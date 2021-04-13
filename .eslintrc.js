@@ -16,7 +16,9 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'import/extensions': 'off',
     'vue/no-unused-components': "off",
-    'quotes': ["error", "double"]
+    'quotes': ["error", "double"],
+    'comma-dangle': "off",
+    'no-unused-vars': "off"
   },
   overrides: [
     {
