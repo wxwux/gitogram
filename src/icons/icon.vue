@@ -1,21 +1,24 @@
 <template>
-  <div class="wrapper">
-    <component :is="name" />
-  </div>
+  <component :is="name" />
 </template>
 
 <script>
 import { home } from "./icons";
+import * as icons from "./icons";
 
 export default {
   name: "Icon",
   components: {
     home,
   },
-  data() {
-    return {
-      name: "home",
-    };
+  props: {
+    name: {
+      type: String,
+      required: true,
+      validator(value) {
+        return Object.keys(icons).includes(value);
+      }
+    }
   },
 };
 </script>
