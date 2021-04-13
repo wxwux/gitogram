@@ -13,6 +13,10 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'import/prefer-default-export': 'off',
+    'import/extensions': 'off',
+    'vue/no-unused-components': "off",
+    'quotes': ["error", "double"]
   },
   overrides: [
     {
