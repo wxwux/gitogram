@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { header } from "./components";
+import { header } from "./components/header";
 
 export default {
   name: "App",
