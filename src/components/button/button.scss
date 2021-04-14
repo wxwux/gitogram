@@ -1,0 +1,17 @@
+.c-button {
+  &.size-small {
+    border-radius: 6px;
+    padding: 6px 28px;
+    font-size: 12px;
+    padding: 6px 28px;
+  }
+
+  &.theme-white {
+    border: 1px solid rgba(60, 60, 67, 0.18);
+    background: transparent;
+
+    &:hover {
+      background: #f0f0f0;
+    }
+  }
+}
