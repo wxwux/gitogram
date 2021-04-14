@@ -16,6 +16,14 @@
     <div class="stat">
       <stats />
     </div>
+    <ul class="comments">
+      <li class="comments-item" v-for="comment in comments" :key="comment.id">
+        <comment
+          :username="comment.username"
+          :text="comment.comment"
+        />
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -23,11 +31,12 @@
 import { avatar } from "../avatar";
 import { user } from "../user";
 import { stats } from "../stats";
+import { comment } from "../comment";
 
 export default {
   name: "Feed",
   components: {
-    avatar, user, stats
+    avatar, user, stats, comment
   },
   props: {
     userpic: {
@@ -37,6 +46,10 @@ export default {
     username: {
       type: String,
       required: true
+    },
+    comments: {
+      type: Array,
+      default: () => []
     }
   }
 };

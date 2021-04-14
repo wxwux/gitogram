@@ -20,6 +20,7 @@
         <feed
           :userpic="feedItem.user.avatar"
           :username="feedItem.user.name"
+          :comments="feedItem.comments"
         />
       </li>
     </ul>
@@ -41,8 +42,13 @@ const feeds = Array.from({ length: 8 }, () => ({
   id: Math.random() * 1000,
   user: {
     avatar: "https://picsum.photos/200/200",
-    name: "John Doe"
-  }
+    name: "John Doe",
+  },
+  comments: Array.from({ length: 3 }, () => ({
+    id: Math.random() * 1000,
+    username: "Jane Doe",
+    comment: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, commodi dolore earum esse incidunt inventore ipsam laboriosam nisi nostrum obcaecati pariatur reprehenderit repudiandae sapiente sit tempore tenetur ut vero voluptas!"
+  }))
 }));
 
 export default {
