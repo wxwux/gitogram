@@ -3,13 +3,13 @@
 </template>
 
 <script>
-import { home } from "./icons";
+import { home, star } from "./icons";
 import * as icons from "./icons";
 
 export default {
   name: "Icon",
   components: {
-    home,
+    home, star
   },
   props: {
     name: {

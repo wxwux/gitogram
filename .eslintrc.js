@@ -18,7 +18,8 @@ module.exports = {
     'vue/no-unused-components': "off",
     'quotes': ["error", "double"],
     'comma-dangle': "off",
-    'no-unused-vars': "off"
+    'no-unused-vars': "off",
+    'max-len': "off"
   },
   overrides: [
     {

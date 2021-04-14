@@ -1,0 +1,32 @@
+.c-stats {
+  --padding: 12px;
+  display: flex;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 2px solid #E0E2E3;
+}
+
+.stats-item {
+  display: flex;
+  line-height: 28px;
+  font-size: 14px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  background: #FAFBFC;
+  border-right: 2px solid #E0E2E3;
+  padding: 0 var(--padding);
+}
+
+.title-text {
+  margin-left: 5px;
+}
+
+.counter {
+  padding: 0 var(--padding);
+}
+
+
+

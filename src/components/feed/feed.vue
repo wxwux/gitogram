@@ -14,7 +14,7 @@
       </p>
     </div>
     <div class="stat">
-
+      <stats />
     </div>
   </div>
 </template>
@@ -22,11 +22,12 @@
 <script>
 import { avatar } from "../avatar";
 import { user } from "../user";
+import { stats } from "../stats";
 
 export default {
   name: "Feed",
   components: {
-    avatar, user
+    avatar, user, stats
   },
   props: {
     userpic: {
