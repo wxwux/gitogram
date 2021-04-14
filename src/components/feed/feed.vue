@@ -24,6 +24,9 @@
         />
       </li>
     </ul>
+    <div class="date">
+      September 19
+    </div>
   </div>
 </template>
 

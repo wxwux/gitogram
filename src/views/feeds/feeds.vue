@@ -1,19 +1,21 @@
 <template>
-  <top-line>
-    <template #headline>
-      <x-header></x-header>
-    </template>
-    <template #content>
-      <ul class="stories">
-        <li class="stories-item" v-for="user in users" :key="user.name">
-          <story-user-item
-            :src="user.avatar"
-            :username="user.name"
-          />
-        </li>
-      </ul>
-    </template>
-  </top-line>
+  <div class="topline">
+    <top-line>
+      <template #headline>
+        <x-header></x-header>
+      </template>
+      <template #content>
+        <ul class="stories">
+          <li class="stories-item" v-for="user in users" :key="user.name">
+            <story-user-item
+              :src="user.avatar"
+              :username="user.name"
+            />
+          </li>
+        </ul>
+      </template>
+    </top-line>
+  </div>
   <div class="x-container">
     <ul class="feeds">
       <li class="feeds-item" v-for="feedItem in feeds" :key="feedItem.id">
