@@ -5,24 +5,7 @@
         <x-header></x-header>
       </template>
       <template #content>
-        <div class="user">
-          <div class="avatar">
-            <avatar
-              src="https://picsum.photos/200/200"
-              username="New User"
-            />
-          </div>
-          <div class="info">
-            <div class="header">
-              <div class="username">Jacob West</div>
-              <x-button>Edit Profile</x-button>
-            </div>
-            <div class="data">
-              <div class="data-item">Digital goodies designer.</div>
-              <div class="data-item">Everything is designed.</div>
-            </div>
-          </div>
-        </div>
+        <about />
       </template>
     </top-line>
   </div>
@@ -41,6 +24,7 @@ import { topLine } from "../../components/topLine";
 import { avatar } from "../../components/avatar";
 import { button } from "../../components/button";
 import { post } from "../../components/post";
+import { about } from "../../components/about";
 
 export default {
   name: "User",
@@ -49,7 +33,8 @@ export default {
     xButton: button,
     topLine,
     avatar,
-    post
+    post,
+    about
   }
 };
 

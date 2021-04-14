@@ -1,6 +1,13 @@
 .c-user {
   display: flex;
   align-items: center;
+
+  &.size-big {
+    .avatar {
+      width: 112px;
+      margin-right: 26px;
+    }
+  }
 }
 
 .avatar {

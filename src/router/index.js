@@ -1,5 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import { feeds, user } from "../views";
+import { feeds, user, friends } from "../views";
+
+console.log("friends", friends);
 
 const routes = [
   {
@@ -12,6 +14,11 @@ const routes = [
     name: "user",
     component: user,
   },
+  {
+    path: "/friends",
+    name: "friends",
+    component: friends
+  }
 ];
 
 const router = createRouter({

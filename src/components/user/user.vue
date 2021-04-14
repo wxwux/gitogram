@@ -1,5 +1,7 @@
 <template>
-  <div class="c-user">
+  <div
+    :class="['c-user', sizeClass]"
+  >
     <div class="avatar">
       <avatar
         :src="src"
@@ -12,11 +14,7 @@
 
 <script>
 import { avatar } from "../avatar";
-
-const sizes = {
-  SMALL: "small",
-  MEDIUM: "medium"
-};
+import { sizes } from "./enums";
 
 export default {
   name: "User",
@@ -32,13 +30,18 @@ export default {
       type: String,
       required: true
     },
-    view: {
+    size: {
       type: String,
-      default: sizes.SMALL,
+      default: sizes.small,
       validator(value) {
         return Object.keys(sizes).map((key) => sizes[key]).includes(value);
       }
     }
+  },
+  data() {
+    return {
+      sizeClass: `size-${this.size}`
+    };
   }
 };
 </script>

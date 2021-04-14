@@ -21,8 +21,8 @@ export default {
   },
   data() {
     return {
-      themeClass: `theme-${themes[this.theme]}`,
-      sizeClass: `size-${sizes[this.size]}`
+      themeClass: `theme-${this.theme}`,
+      sizeClass: `size-${this.size}`
     };
   }
 };
