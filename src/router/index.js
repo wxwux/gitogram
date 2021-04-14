@@ -1,11 +1,11 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import { feed } from "../views";
+import { feeds } from "../views";
 
 const routes = [
   {
     path: "/",
     name: "Feed",
-    component: feed,
+    component: feeds,
   },
 ];
 

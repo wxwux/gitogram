@@ -14,6 +14,9 @@
       </ul>
     </template>
   </top-line>
+  <div class="x-container">
+
+  </div>
 </template>
 
 <script>
@@ -42,4 +45,4 @@ export default {
 
 </script>
 
-<style lang="scss" src="./feed.scss" scoped></style>
+<style lang="scss" src="./feeds.scss" scoped></style>
