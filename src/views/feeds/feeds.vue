@@ -15,7 +15,14 @@
     </template>
   </top-line>
   <div class="x-container">
-
+    <ul class="feeds">
+      <li class="feeds-item" v-for="feedItem in feeds" :key="feedItem.id">
+        <feed
+          :userpic="feedItem.user.avatar"
+          :username="feedItem.user.name"
+        />
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -23,24 +30,35 @@
 import { header } from "../../components/header";
 import { topLine } from "../../components/topLine";
 import { storyUserItem } from "../../components/storyUserItem";
+import { feed } from "../../components/feed";
 
 const users = Array.from({ length: 8 }, () => ({
   avatar: "https://picsum.photos/200/200",
   name: "John Doe"
 }));
 
+const feeds = Array.from({ length: 8 }, () => ({
+  id: Math.random() * 1000,
+  user: {
+    avatar: "https://picsum.photos/200/200",
+    name: "John Doe"
+  }
+}));
+
 export default {
-  name: "Feed",
+  name: "Feeds",
   data() {
     return {
-      users
+      users,
+      feeds
     };
   },
   components: {
     storyUserItem,
     xHeader: header,
     topLine,
-  },
+    feed
+  }
 };
 
 </script>
