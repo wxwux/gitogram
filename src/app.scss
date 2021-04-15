@@ -38,16 +38,16 @@ button {
   cursor: pointer;
 }
 
-.x-wrapper {
+#app {
   overflow: hidden;
+  min-height: 100%;
+  position: relative;
 }
 
 .x-container {
   width: 1200px;
   margin: 0 auto;
 }
-
-
 
 *, *:after, *:before {
   box-sizing: border-box;
