@@ -1,0 +1,31 @@
+.wrapper {
+  background: #000;
+  min-height: 800px;
+  height: 100vh;
+}
+
+.header .x-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header {
+  padding: 35px 0;
+}
+
+.close-btn {
+  color: #fff;
+}
+
+.stories {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stories-item:not(:last-child) {
+  margin-right: 80px;
+}
+
+

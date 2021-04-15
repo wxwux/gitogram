@@ -1,0 +1,30 @@
+.c-progress {
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress-item {
+  background: rgba(255, 255, 255, .36);
+  height: 2px;
+  border-radius: 10px;
+  flex: 1;
+  margin-right: 2px;
+  position: relative;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    background: #fff;
+  }
+}
+
+
+
