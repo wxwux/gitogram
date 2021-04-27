@@ -1,10 +1,10 @@
 import { makeRequest } from "../requests";
 
-export const getStarredRepos = () => {
+export const getIssues = ({ owner, repo }) => {
   const params = new URLSearchParams();
   params.append("per_page", 10);
 
   return makeRequest({
-    url: `/user/starred?${params}`
+    url: `/repos/${owner}/${repo}/issues`
   });
 };

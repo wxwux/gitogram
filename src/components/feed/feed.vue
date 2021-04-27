@@ -7,25 +7,25 @@
       />
     </div>
     <div class="content">
+      <h2>{{title}}</h2>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex, facere, nulla? Asperiores
-        dignissimos inventore labore nulla odit. Assumenda blanditiis cumque cupiditate distinctio
-        earum fugiat itaque labore maiores molestiae, nesciunt, quo.
+        {{description}}
       </p>
     </div>
     <div class="stat">
-      <stats />
+      <stats :stars="stars" :forks="forks"/>
     </div>
-    <ul class="comments">
-      <li class="comments-item" v-for="comment in comments" :key="comment.id">
+    <x-button @click="$emit('openIssues')">Открыть Issues</x-button>
+    <ul class="comments" v-if="issues?.length">
+      <li class="comments-item" v-for="issue in issues" :key="issue.id">
         <comment
-          :username="comment.username"
-          :text="comment.comment"
+          :username="issue.user.login"
+          :text="issue.title"
         />
       </li>
     </ul>
     <div class="date">
-      September 19
+      {{humanReadableDate}}
     </div>
   </div>
 </template>
@@ -35,11 +35,16 @@ import { avatar } from "../avatar";
 import { user } from "../user";
 import { stats } from "../stats";
 import { comment } from "../comment";
+import { button } from "../button";
 
 export default {
   name: "Feed",
   components: {
-    avatar, user, stats, comment
+    avatar,
+    user,
+    stats,
+    comment,
+    xButton: button
   },
   props: {
     userpic: {
@@ -50,9 +55,55 @@ export default {
       type: String,
       required: true
     },
-    comments: {
+    description: {
+      type: String,
+      required: true
+    },
+    stars: {
+      type: Number,
+      required: true
+    },
+    forks: {
+      type: Number,
+      required: true
+    },
+    title: {
+      type: String,
+      required: true
+    },
+    issues: {
       type: Array,
       default: () => []
+    },
+    date: {
+      type: Date,
+      required: true
+    }
+  },
+  computed: {
+    humanReadableDate() {
+      // let month =
+      const getMonthName = (monthNum) => {
+        let monthName = "";
+        switch (monthNum) {
+          case 1: monthName = "January"; break;
+          case 2: monthName = "February"; break;
+          case 3: monthName = "March"; break;
+          case 4: monthName = "April"; break;
+          case 5: monthName = "May"; break;
+          case 6: monthName = "June"; break;
+          case 7: monthName = "July"; break;
+          case 8: monthName = "August"; break;
+          case 9: monthName = "September"; break;
+          case 10: monthName = "October"; break;
+          case 11: monthName = "November"; break;
+          case 12: monthName = "December"; break;
+          default: monthName = "January";
+        }
+
+        return monthName;
+      };
+      return `${getMonthName(this.date.getMonth() + 1)} ${this.date.getDay()}`;
     }
   }
 };

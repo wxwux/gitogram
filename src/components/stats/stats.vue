@@ -5,7 +5,14 @@
         <icon name="star"/>
         <div class="title-text">Stars</div>
       </div>
-      <div class="counter">100</div>
+      <div class="counter">{{stars}}</div>
+    </div>
+    <div class="stats-item">
+      <div class="title">
+        <icon name="star"/>
+        <div class="title-text">Forks</div>
+      </div>
+      <div class="counter">{{forks}}</div>
     </div>
   </div>
 </template>
@@ -16,6 +23,16 @@ import { icon } from "../../icons";
 export default {
   name: "Stats",
   components: { icon },
+  props: {
+    stars: {
+      type: Number,
+      required: true
+    },
+    forks: {
+      type: Number,
+      required: true
+    }
+  }
 };
 
 </script>

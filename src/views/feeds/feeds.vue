@@ -18,11 +18,22 @@
   </div>
   <div class="x-container">
     <ul class="feeds">
-      <li class="feeds-item" v-for="feedItem in feeds" :key="feedItem.id">
+      <li class="feeds-item"
+          v-for="{
+              id, name, owner, description, stargazers_count, forks, issues, created_at
+          } in starred"
+          :key="id"
+      >
         <feed
-          :userpic="feedItem.user.avatar"
-          :username="feedItem.user.name"
-          :comments="feedItem.comments"
+          :userpic="owner.avatar_url"
+          :username="owner.login"
+          :title="name"
+          :description="description"
+          :stars="stargazers_count"
+          :forks="forks"
+          :issues="issues"
+          :date="new Date(created_at)"
+          @openIssues="fetchIssues({id, owner: owner.login, repo: name})"
         />
       </li>
     </ul>
@@ -37,32 +48,8 @@ import { topLine } from "../../components/topLine";
 import { storyUserItem } from "../../components/storyUserItem";
 import { feed } from "../../components/feed";
 
-const users = Array.from({ length: 8 }, () => ({
-  avatar: "https://picsum.photos/200/200",
-  name: "John Doe"
-}));
-
-const feeds = Array.from({ length: 8 }, () => ({
-  id: Math.random() * 1000,
-  user: {
-    avatar: "https://picsum.photos/200/200",
-    name: "John Doe",
-  },
-  comments: Array.from({ length: 3 }, () => ({
-    id: Math.random() * 1000,
-    username: "Jane Doe",
-    comment: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, commodi dolore earum esse incidunt inventore ipsam laboriosam nisi nostrum obcaecati pariatur reprehenderit repudiandae sapiente sit tempore tenetur ut vero voluptas!"
-  }))
-}));
-
 export default {
   name: "Feeds",
-  data() {
-    return {
-      users,
-      feeds
-    };
-  },
   components: {
     storyUserItem,
     xHeader: header,
@@ -71,17 +58,21 @@ export default {
   },
   computed: {
     ...mapState({
-      trendings: (state) => state.trendings.data
+      trendings: (state) => state.trendings.data,
+      starred: (state) => state.starred.data
     })
   },
   methods: {
     ...mapActions({
       getUser: "user/getUser",
-      fetchTrendings: "trendings/fetchTrendings"
+      fetchTrendings: "trendings/fetchTrendings",
+      fetchStarred: "starred/fetchStarred",
+      fetchIssues: "starred/fetchIssuesForRepo"
     })
   },
   mounted() {
     this.fetchTrendings();
+    this.fetchStarred();
     // this.getUser();
   }
 };
