@@ -6,7 +6,7 @@ import {
 const routes = [
   {
     path: "/",
-    name: "feed",
+    name: "feeds",
     component: feeds,
   },
   {

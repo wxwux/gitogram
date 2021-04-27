@@ -6,10 +6,10 @@
       </template>
       <template #content>
         <ul class="stories">
-          <li class="stories-item" v-for="user in users" :key="user.name">
+          <li class="stories-item" v-for="trending in trendings" :key="trending.id">
             <story-user-item
-              :src="user.avatar"
-              :username="user.name"
+              :src="trending.owner.avatar_url"
+              :username="trending.name"
             />
           </li>
         </ul>
@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
+
 import { header } from "../../components/header";
 import { topLine } from "../../components/topLine";
 import { storyUserItem } from "../../components/storyUserItem";
@@ -66,6 +68,21 @@ export default {
     xHeader: header,
     topLine,
     feed
+  },
+  computed: {
+    ...mapState({
+      trendings: (state) => state.trendings.data
+    })
+  },
+  methods: {
+    ...mapActions({
+      getUser: "user/getUser",
+      fetchTrendings: "trendings/fetchTrendings"
+    })
+  },
+  mounted() {
+    this.fetchTrendings();
+    // this.getUser();
   }
 };
 

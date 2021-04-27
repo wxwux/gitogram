@@ -5,7 +5,11 @@
         <logo />
       </div>
       <div class="enter">
-        <x-button theme="green" size="big">
+        <x-button
+          theme="green"
+          size="big"
+          @click="getToken"
+        >
           <span class="button-content">
             <span class="button-text">
               Войти с помощью GitHub
@@ -19,6 +23,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import { logo } from "../../components/logo";
 import { button } from "../../components/button";
 import { icon } from "../../icons";
@@ -28,6 +33,22 @@ export default {
     logo,
     xButton: button,
     icon
+  },
+  methods: {
+    ...mapActions({
+      getToken: "auth/getAuthCode",
+      getAccessToken: "auth/authUserByCode"
+    })
+  },
+  async mounted() {
+    const code = new URLSearchParams(window.location.search).get("code");
+
+    if (code) {
+      const token = await this.getAccessToken(code);
+      localStorage.setItem("token", token);
+      this.$router.replace({ to: "feeds" });
+      window.location = "/";
+    }
   }
 };
 
