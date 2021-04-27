@@ -6,10 +6,10 @@
       </template>
       <template #content>
         <ul class="stories">
-          <li class="stories-item" v-for="trending in trendings" :key="trending.id">
+          <li class="stories-item" v-for="{id, owner, name} in trendings" :key="id">
             <story-user-item
-              :src="trending.owner.avatar_url"
-              :username="trending.name"
+              :src="owner.avatar_url"
+              :username="name"
             />
           </li>
         </ul>
