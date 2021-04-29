@@ -7,13 +7,7 @@
       </div>
     </header>
     <div class="content">
-      <div class="x-container">
-        <ul class="stories">
-          <li class="stories-item" v-for="n in 3" :key="n">
-            <story-post-item />
-          </li>
-        </ul>
-      </div>
+      <stories-slider />
     </div>
   </div>
 </template>
@@ -21,11 +15,11 @@
 <script>
 import { logo } from "../../components/logo";
 import { icon } from "../../icons";
-import { storyPostItem } from "../../components/storyPostItem";
+import { storiesSlider } from "../../components/storiesSlider";
 
 export default {
   name: "Stories",
-  components: { logo, icon, storyPostItem }
+  components: { logo, icon, storiesSlider }
 };
 
 </script>

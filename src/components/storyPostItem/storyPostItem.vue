@@ -1,24 +1,28 @@
 <template>
-  <div class="c-story-post-item">
-    <div class="progress">
-      <x-progress :segments="5" />
+  <div :class="['c-story-post-item', {active: active}]">
+    <div class="stories-container">
+      <div class="progress">
+        <x-progress :segments="1" />
+      </div>
+      <div class="content">
+        <div class="header">
+          <user
+            :username="username"
+            :src="userAvatar"
+          />
+        </div>
+        <div class="info">
+          <p>{{content}}</p>
+        </div>
+        <div class="button">
+          <x-button size="big" theme="green">watch</x-button>
+        </div>
+      </div>
     </div>
-    <div class="content">
-      <div class="header">
-        <user
-          username="John Doe"
-          src="https://picsum.photos/200/200"
-        />
-      </div>
-      <div class="info">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet at, beatae deserunt distinctio dolore facilis ipsum magni nam nemo neque nobis numquam quae quia, quidem quod rem, tenetur totam voluptatem!
-        </p>
-      </div>
-      <div class="button">
-        <x-button size="big" theme="green">watch</x-button>
-      </div>
-    </div>
+    <template v-if="active">
+      <button v-if="buttonsShown.includes('next')" class="btn btn-next" @click="$emit('next')">next</button>
+      <button v-if="buttonsShown.includes('prev')" class="btn btn-prev" @click="$emit('prev')">prev</button>
+    </template>
   </div>
 </template>
 
@@ -29,7 +33,29 @@ import { progress } from "../progress";
 
 export default {
   name: "UserStoryItem",
-  components: { user, xButton: button, xProgress: progress }
+  components: { user, xButton: button, xProgress: progress },
+  props: {
+    active: Boolean,
+    userAvatar: {
+      type: String,
+      required: true
+    },
+    username: {
+      type: String,
+      required: true
+    },
+    content: {
+      type: String,
+      required: true
+    },
+    buttonsShown: {
+      type: Array,
+      default: () => ["next", "prev"],
+      validator(value) {
+        return ["next", "prev"].includes(value);
+      }
+    }
+  }
 };
 
 </script>

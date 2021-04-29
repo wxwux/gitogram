@@ -1,5 +1,16 @@
 .c-story-post-item {
   height: 660px;
+  position: relative;
+  transform: scale(.4);
+  width: 300px;
+  transition: .4s;
+
+  &.active {
+    transform: scale(1);
+  }
+}
+
+.stories-container {
   border-radius: 8px;
   overflow: hidden;
   background: linear-gradient(0deg, rgba(43,43,43,1) 10%, rgba(60,60,60,1) 50%, rgba(43,43,43,1) 90%);
@@ -7,6 +18,7 @@
   padding: 8px;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .header {
@@ -36,4 +48,20 @@
   padding: 0 20px;
 }
 
+.btn {
+  position: absolute;
+  top: 50%;
+  display: block;
+  width: 50px;
+  height: 50px;
+  color: #fff;
+  border: 1px solid #fff;
 
+  &-prev {
+    left: -100px;
+  }
+
+  &-next {
+    right: -100px;
+  }
+}

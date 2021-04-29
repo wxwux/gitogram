@@ -11,7 +11,9 @@ export default {
     }
   },
   actions: {
-    async fetchTrendings({ commit }) {
+    async fetchTrendings({ state, commit }) {
+      if (state.data.length > 0) return;
+
       try {
         const { data } = await api.getTrendings();
         commit("SET_TRENDINGS", data.items);
