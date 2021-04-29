@@ -11,9 +11,7 @@
             :src="userAvatar"
           />
         </div>
-        <div class="info">
-          <p>{{content}}</p>
-        </div>
+        <div v-if="content?.length" class="info" v-html="content" />
         <div class="button">
           <x-button size="big" theme="green">watch</x-button>
         </div>
@@ -52,7 +50,7 @@ export default {
       type: Array,
       default: () => ["next", "prev"],
       validator(value) {
-        return ["next", "prev"].includes(value);
+        return value.every((item) => item === "next" || item === "prev");
       }
     }
   }

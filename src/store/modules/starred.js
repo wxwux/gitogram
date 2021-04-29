@@ -43,6 +43,6 @@ export default {
         console.log(e);
         throw e;
       }
-    }
+    },
   }
 };

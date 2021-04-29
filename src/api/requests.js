@@ -9,10 +9,12 @@ if (token) {
 }
 
 export const makeRequest = ({
-  url, method = "get", data = {}, withBaseUrl = true
+  url, method = "get", data = {}, withBaseUrl = true,
+  headers = {}
 }) => axios({
   url,
   method,
   data,
-  baseURL: withBaseUrl ? baseURL : ""
+  baseURL: withBaseUrl ? baseURL : "",
+  headers: { ...headers }
 });
