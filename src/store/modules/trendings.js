@@ -6,8 +6,13 @@ export default {
     data: []
   },
   mutations: {
-    SET_TRENDINGS: (state, payload) => {
-      state.data = payload;
+    SET_TRENDINGS: (state, { starred, trendings }) => {
+      console.log("starred, trendings", starred, trendings);
+      if (starred.length > 0) {
+        state.data = trendings.filter((trending) => starred.find((starredRepo) => starredRepo.id === trending.id) === undefined);
+      } else {
+        state.data = trendings;
+      }
     },
     SET_README: (state, payload) => {
       state.data = state.data.map((repo) => {
@@ -29,12 +34,14 @@ export default {
     }
   },
   actions: {
-    async fetchTrendings({ state, commit }) {
+    async fetchTrendings({ state, commit, rootState }) {
       if (state.data.length > 0) return;
+
+      console.log(rootState);
 
       try {
         const { data } = await api.trendings.getTrendings();
-        commit("SET_TRENDINGS", data.items);
+        commit("SET_TRENDINGS", { starred: rootState.starred.data, trendings: data.items });
       } catch (e) {
         console.log(e);
         throw e;

@@ -34,7 +34,7 @@ import { button } from "../button";
 import { progress } from "../progress";
 
 export default {
-  name: "UserStoryItem",
+  name: "StoryUserItem",
   components: { user, xButton: button, xProgress: progress },
   props: {
     active: Boolean,
@@ -48,7 +48,6 @@ export default {
     },
     content: {
       type: String,
-      required: true
     },
     following: {
       type: Boolean

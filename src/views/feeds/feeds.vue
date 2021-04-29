@@ -10,6 +10,7 @@
             <story-user-item
               :src="owner.avatar_url"
               :username="name"
+              @storyPress="$router.push({name: 'stories'})"
             />
           </li>
         </ul>
@@ -68,7 +69,11 @@ export default {
       fetchTrendings: "trendings/fetchTrendings",
       fetchStarred: "starred/fetchStarred",
       fetchIssues: "starred/fetchIssuesForRepo"
-    })
+    }),
+    goTo(routeName) {
+      // console.log(this.);
+      // router.push({name: 'stories'})
+    }
   },
   mounted() {
     this.fetchTrendings();

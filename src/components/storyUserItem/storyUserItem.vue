@@ -1,11 +1,11 @@
 <template>
  <div class="c-story-user-item">
-   <div class="avatar">
+   <button class="avatar" @click="$emit('storyPress')">
      <avatar
        :src="src"
        :username="username"
      />
-   </div>
+   </button>
    <div class="username">{{username}}</div>
  </div>
 </template>
