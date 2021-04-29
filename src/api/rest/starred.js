@@ -8,3 +8,8 @@ export const getStarredRepos = () => {
     url: `/user/starred?${params}`
   });
 };
+
+export const starRepo = ({ repo, owner }) => makeRequest({
+  url: `/user/starred/${owner}/${repo}`,
+  method: "put"
+});

@@ -1,5 +1,5 @@
 <template>
-  <button :class="['c-button', themeClass, sizeClass]">
+  <button :class="['c-button', `theme-${theme}`, `size-${size}`]">
     <slot></slot>
   </button>
 </template>
@@ -16,15 +16,9 @@ export default {
     },
     theme: {
       type: String,
-      default: themes.white
+      default: "white"
     }
   },
-  data() {
-    return {
-      themeClass: `theme-${this.theme}`,
-      sizeClass: `size-${this.size}`
-    };
-  }
 };
 </script>
 

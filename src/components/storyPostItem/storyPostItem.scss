@@ -40,7 +40,9 @@
   flex: 1;
   margin-bottom: 20px;
   font-size: 10px;
-  pointer-events: none;
+  overflow-y: auto;
+  max-height: 460px;
+  overflow-x: hidden;
 }
 
 .button {

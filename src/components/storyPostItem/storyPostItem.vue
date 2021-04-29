@@ -11,9 +11,13 @@
             :src="userAvatar"
           />
         </div>
-        <div v-if="content?.length" class="info" v-html="content" />
+        <div v-if="content?.length" class="info">
+          <div class="content-text" v-html="content"></div>
+        </div>
         <div class="button">
-          <x-button size="big" theme="green">watch</x-button>
+          <x-button size="big" :theme="buttonTheme" @click="$emit('followTheRepo')">
+            {{following ? 'Unfollow': 'Follow'}}
+          </x-button>
         </div>
       </div>
     </div>
@@ -46,12 +50,20 @@ export default {
       type: String,
       required: true
     },
+    following: {
+      type: Boolean
+    },
     buttonsShown: {
       type: Array,
       default: () => ["next", "prev"],
       validator(value) {
         return value.every((item) => item === "next" || item === "prev");
       }
+    }
+  },
+  computed: {
+    buttonTheme() {
+      return this.following === true ? "white" : "green";
     }
   }
 };

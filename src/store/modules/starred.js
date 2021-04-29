@@ -17,8 +17,6 @@ export default {
         }
         return editedRepo;
       });
-
-      console.log(state.data);
     }
   },
   actions: {

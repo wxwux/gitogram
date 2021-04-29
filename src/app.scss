@@ -44,6 +44,12 @@ button {
   position: relative;
 }
 
+#readme {
+  a {
+    color: inherit;
+  }
+}
+
 .x-container {
   width: 1200px;
   margin: 0 auto;

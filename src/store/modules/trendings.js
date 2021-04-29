@@ -6,8 +6,8 @@ export default {
     data: []
   },
   mutations: {
-    SET_TRENDINGS: (state, trendings) => {
-      state.data = trendings;
+    SET_TRENDINGS: (state, payload) => {
+      state.data = payload;
     },
     SET_README: (state, payload) => {
       state.data = state.data.map((repo) => {
@@ -15,7 +15,16 @@ export default {
         if (payload.id === editedRepo.id) {
           editedRepo.readme = payload.content;
         }
-        return repo;
+        return editedRepo;
+      });
+    },
+    SET_FOLLOWING: (state, payload) => {
+      state.data = state.data.map((repo) => {
+        const editedRepo = repo;
+        if (payload.id === editedRepo.id) {
+          editedRepo.following = payload.following;
+        }
+        return editedRepo;
       });
     }
   },
@@ -40,6 +49,16 @@ export default {
       } catch (e) {
         console.log(e);
         throw (e);
+      }
+    },
+    async starRepo({ commit }, { id, owner, repo }) {
+      try {
+        const { data } = await api.starred.starRepo({ owner, repo });
+        commit("SET_FOLLOWING", { id, following: true });
+        console.log(data);
+      } catch (e) {
+        console.log(e);
+        throw e;
       }
     }
   }
