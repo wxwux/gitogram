@@ -1,0 +1,19 @@
+.stories {
+  display: flex;
+  align-items: center;
+  width: 4000px;
+}
+
+.stories-container {
+  height: 660px;
+  position: relative;
+}
+
+.stories {
+  position: absolute;
+  left: 50%;
+  margin-left: -150px;
+  transform: translateX(0);
+  transition: transform .4s;
+}
+
