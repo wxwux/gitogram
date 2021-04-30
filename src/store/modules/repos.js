@@ -1,3 +1,25 @@
+import * as api from "../../api";
+
 export default {
-  namespaced: true
+  namespaced: true,
+  state: {
+    data: []
+  },
+  mutations: {
+    SET_REPOS: (state, payload) => {
+      state.data = payload;
+    },
+  },
+  actions: {
+    async fetchRepos({ commit }) {
+      try {
+        const { data } = await api.user.getUserRepos();
+        console.log(data);
+        commit("SET_REPOS", data);
+      } catch (e) {
+        console.log(e);
+        throw e;
+      }
+    }
+  }
 };

@@ -8,6 +8,7 @@ export default createStore({
     auth,
     user,
     trendings,
-    starred
+    starred,
+    repos
   },
 });

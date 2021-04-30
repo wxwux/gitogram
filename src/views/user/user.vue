@@ -18,7 +18,10 @@
   </div>
   <div class="x-container">
     <ul class="posts">
-      <li class="post-item" v-for="n in 12" :key="n">
+      <li class="post-item"
+          v-for="repo in repos"
+          :key="repo.id"
+      >
         <post />
       </li>
     </ul>
@@ -47,6 +50,7 @@ export default {
   computed: {
     ...mapState({
       user: (state) => state.user.data,
+      repos: (state) => state.repos.data
     }),
     ...mapGetters({
       following: "starred/following"
@@ -55,12 +59,14 @@ export default {
   methods: {
     ...mapActions({
       getUser: "user/getUser",
-      fetchStarred: "starred/fetchStarred"
+      fetchStarred: "starred/fetchStarred",
+      fetchRepos: "repos/fetchRepos"
     })
   },
   created() {
     this.getUser();
     this.fetchStarred();
+    this.fetchRepos();
   }
 };
 
