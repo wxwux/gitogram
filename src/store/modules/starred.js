@@ -19,10 +19,14 @@ export default {
       });
     }
   },
+  getters: {
+    following: (state) => state.data.length
+  },
   actions: {
-    async fetchStarred({ commit }) {
+    async fetchStarred({ commit }, payload) {
+      console.log("starred");
       try {
-        const { data } = await api.starred.getStarredRepos();
+        const { data } = await api.starred.getStarredRepos({ limit: payload?.limit });
 
         commit("SET_STARRED", data);
       } catch (e) {

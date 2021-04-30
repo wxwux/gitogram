@@ -5,7 +5,14 @@
         <x-header></x-header>
       </template>
       <template #content>
-        <about />
+        <about
+          v-if="user.login"
+          :username="user.name"
+          :login="user.login"
+          :user-avatar="user.avatar_url"
+          :followers="user.followers"
+          :following="following"
+        />
       </template>
     </top-line>
   </div>
@@ -19,6 +26,7 @@
 </template>
 
 <script>
+import { mapActions, mapState, mapGetters } from "vuex";
 import { header } from "../../components/header";
 import { topLine } from "../../components/topLine";
 import { avatar } from "../../components/avatar";
@@ -35,6 +43,24 @@ export default {
     avatar,
     post,
     about
+  },
+  computed: {
+    ...mapState({
+      user: (state) => state.user.data,
+    }),
+    ...mapGetters({
+      following: "starred/following"
+    })
+  },
+  methods: {
+    ...mapActions({
+      getUser: "user/getUser",
+      fetchStarred: "starred/fetchStarred"
+    })
+  },
+  created() {
+    this.getUser();
+    this.fetchStarred();
   }
 };
 

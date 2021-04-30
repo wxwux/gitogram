@@ -77,7 +77,7 @@ export default {
   },
   mounted() {
     this.fetchTrendings();
-    this.fetchStarred();
+    this.fetchStarred({ limit: 10 });
     // this.getUser();
   }
 };

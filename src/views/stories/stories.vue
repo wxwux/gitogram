@@ -2,8 +2,12 @@
   <div class="wrapper">
     <header class="header">
       <div class="x-container">
-        <logo white />
-        <icon name="close" class="close-btn" />
+        <button class="logo" @click="$router.push({name: 'feeds'})">
+          <logo white />
+        </button>
+        <button class="close-btn" @click="$router.push({name: 'feeds'})">
+          <icon name="close" />
+        </button>
       </div>
     </header>
     <div class="content">

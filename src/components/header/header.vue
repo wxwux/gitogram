@@ -1,17 +1,17 @@
 <template>
   <header class="c-header">
-    <logo />
+    <logo @click="$router.push({name: 'feeds'})" />
     <div class="buttons">
-      <div class="btn-item">
+      <button class="btn-item" @click="$router.push({name: 'feeds'})">
         <icon name="home" />
-      </div>
+      </button>
       <div class="btn-item">
-        <div class="avatar">
+        <button class="avatar" @click="$router.push({name: 'user'})">
           <avatar
             src="https://picsum.photos/200/200"
             username="John Doe"
           />
-        </div>
+        </button>
       </div>
     </div>
   </header>
@@ -22,11 +22,15 @@
 import { icon } from "../../icons";
 import { logo } from "../logo";
 import { avatar } from "../avatar";
+import Button from "../button/button";
 
 export default {
   name: "Header",
   components: {
-    icon, logo, avatar
+    Button,
+    icon,
+    logo,
+    avatar
   },
 };
 </script>

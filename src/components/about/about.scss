@@ -7,17 +7,29 @@
   margin-right: 30px;
 }
 
-.header {
-  display: flex;
-}
-
 .username {
   margin-right: 20px;
   font-size: 18px;
   font-weight: bold;
 }
 
-.header {
-  margin-bottom: 10px;
+.stats-int {
+  color: #262626;
+  font-size: 16px;
+  margin-right: 4px;
+  font-weight: bold;
 }
+
+.stats-title {
+  font-size: 13px;
+}
+
+.stats-item {
+  margin-right: 13px;
+}
+
+.stats {
+  display: flex;
+}
+
 

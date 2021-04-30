@@ -2,18 +2,28 @@
   <div class="c-user">
     <div class="avatar">
       <avatar
-        src="https://picsum.photos/200/200"
-        username="New User"
+        :src="userAvatar"
+        :username="login"
       />
     </div>
     <div class="info">
       <div class="header">
-        <div class="username">Jacob West</div>
-        <x-button>Edit Profile</x-button>
+        <div class="username">{{login}}</div>
+        <ul class="stats">
+          <li class="stats-item">
+            <span class="stats-int">{{followers}}</span>
+            <span class="stats-title">followers</span>
+          </li>
+          <li class="stats-item">
+            <span class="stats-int">{{following}}</span>
+            <span class="stats-title">following</span>
+          </li>
+        </ul>
       </div>
       <div class="data">
-        <div class="data-item">Digital goodies designer.</div>
-        <div class="data-item">Everything is designed.</div>
+        <p>
+          {{username}}
+        </p>
       </div>
     </div>
   </div>
@@ -28,6 +38,28 @@ export default {
   components: {
     avatar,
     xButton: button
+  },
+  props: {
+    login: {
+      type: String,
+      required: true
+    },
+    username: {
+      type: String,
+      required: true,
+    },
+    userAvatar: {
+      type: String,
+      required: true
+    },
+    following: {
+      type: Number,
+      required: true
+    },
+    followers: {
+      type: Number,
+      required: true
+    }
   }
 };
 
