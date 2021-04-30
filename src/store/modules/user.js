@@ -13,7 +13,7 @@ export default {
   actions: {
     async getUser({ commit }) {
       try {
-        const { data } = await api.user.getUser();
+        const { data } = await api.user.getUserData();
         commit("SET_USER", data);
       } catch (e) {
         console.log(e);
