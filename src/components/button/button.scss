@@ -1,9 +1,12 @@
 .c-button {
+  &.rubberish {
+    width: 100%;
+  }
+
   &.size-small {
     border-radius: 6px;
     padding: 6px 28px;
     font-size: 12px;
-    padding: 6px 28px;
   }
 
   &.size-big {
@@ -29,6 +32,23 @@
 
     &:hover {
       background: #A8A8A8;
+    }
+  }
+
+  &.hover-text {
+    &:hover {
+      .btn-text {
+        font-size: 0;
+      }
+
+      &:after {
+        font-size: inherit;
+      }
+    }
+
+    &:after {
+      content: attr(data-hover-text);
+      font-size: 0;
     }
   }
 }

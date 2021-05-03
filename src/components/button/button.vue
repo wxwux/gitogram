@@ -1,6 +1,11 @@
 <template>
-  <button :class="['c-button', `theme-${theme}`, `size-${size}`]">
-    <slot></slot>
+  <button
+    :class="['c-button', `theme-${theme}`, `size-${size}`, {'hover-text': withHoverText}, {rubberish: rubberish}]"
+    :data-hover-text="hoverText"
+  >
+    <span class="btn-text">
+      <slot></slot>
+    </span>
   </button>
 </template>
 
@@ -17,8 +22,19 @@ export default {
     theme: {
       type: String,
       default: "white"
+    },
+    hoverText: {
+      type: String
+    },
+    rubberish: {
+      type: Boolean
     }
   },
+  computed: {
+    withHoverText() {
+      return this.hoverText?.length;
+    }
+  }
 };
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="x-container">
-    <ul class="posts" v-if="repos.length">
+    <ul class="posts">
       <li class="post-item"
           v-for="repo in publicRepos"
           :key="repo.id"
@@ -39,6 +39,9 @@ export default {
   },
   created() {
     this.fetchRepos();
+  },
+  watch: {
+    $route: "fetchRepos"
   }
 };
 

@@ -4,3 +4,4 @@ export { default as friends } from "./friends/friends.vue";
 export { default as auth } from "./auth/auth.vue";
 export { default as stories } from "./stories/stories.vue";
 export { default as repos } from "./repos/repos.vue";
+export { default as following } from "./following/following.vue";

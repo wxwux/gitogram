@@ -15,10 +15,10 @@
             <span class="stats-title">followers</span>
           </li>
           <li class="stats-item">
-            <button>
+            <router-link :to="{name: 'following'}">
               <span class="stats-int">{{following}}</span>
               <span class="stats-title">following</span>
-            </button>
+            </router-link>
           </li>
         </ul>
       </div>

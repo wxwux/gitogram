@@ -24,7 +24,6 @@ export default {
   },
   actions: {
     async fetchStarred({ commit }, payload) {
-      console.log("starred");
       try {
         const { data } = await api.starred.getStarredRepos({ limit: payload?.limit });
 
