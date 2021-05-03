@@ -14,7 +14,6 @@ export default {
     async fetchRepos({ commit }) {
       try {
         const { data } = await api.user.getUserRepos();
-        console.log(data);
         commit("SET_REPOS", data);
       } catch (e) {
         console.log(e);

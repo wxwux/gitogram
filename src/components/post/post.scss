@@ -1,7 +1,8 @@
 .c-post {
   height: 288px;
-  padding: 28px;
+  padding: 20px;
   background: #f6f6f6;
+  position: relative;
 
   img {
     max-width: 100%;
@@ -9,3 +10,16 @@
     display: block;
   }
 }
+
+.stats {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.title {
+  color: #1567CC;
+  font-weight: bold;
+  font-size: 24px;
+}
+

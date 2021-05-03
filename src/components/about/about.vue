@@ -15,8 +15,10 @@
             <span class="stats-title">followers</span>
           </li>
           <li class="stats-item">
-            <span class="stats-int">{{following}}</span>
-            <span class="stats-title">following</span>
+            <button>
+              <span class="stats-int">{{following}}</span>
+              <span class="stats-title">following</span>
+            </button>
           </li>
         </ul>
       </div>
