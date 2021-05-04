@@ -1,5 +1,5 @@
 <template>
-  <div class="c-follower">
+  <div class="c-subscription">
     <div class="user">
       <user :username="username" :src="avatar"  size="medium"/>
     </div>
@@ -36,4 +36,4 @@ export default {
 
 </script>
 
-<style lang="scss" scoped src="./follower.scss"></style>
+<style lang="scss" scoped src="./subscription.scss"></style>

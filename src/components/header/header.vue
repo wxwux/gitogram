@@ -8,8 +8,8 @@
       <div class="btn-item">
         <button class="avatar" @click="$router.push({name: 'user'})">
           <avatar
-            src="https://picsum.photos/200/200"
-            username="John Doe"
+            :src="user.avatar_url"
+            :username="user.login"
           />
         </button>
       </div>
@@ -18,20 +18,24 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 
 import { icon } from "../../icons";
 import { logo } from "../logo";
 import { avatar } from "../avatar";
-import Button from "../button/button";
 
 export default {
   name: "Header",
   components: {
-    Button,
     icon,
     logo,
     avatar
   },
+  computed: {
+    ...mapState({
+      user: (state) => state.user.data
+    })
+  }
 };
 </script>
 

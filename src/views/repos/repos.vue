@@ -29,7 +29,12 @@ export default {
       repos: (state) => state.repos.data
     }),
     publicRepos() {
-      return this.repos.filter((repo) => repo.private === false);
+      return this.repos
+        .filter((repo) => repo.private === false)
+        .sort((a, b) => {
+          const comparator = (item) => item.stargazers_count + item.forks;
+          return comparator(b) - comparator(a);
+        });
     }
   },
   methods: {
@@ -38,10 +43,13 @@ export default {
     })
   },
   created() {
+    console.log("text");
     this.fetchRepos();
   },
   watch: {
-    $route: "fetchRepos"
+    $route() {
+      console.log("asda");
+    }
   }
 };
 

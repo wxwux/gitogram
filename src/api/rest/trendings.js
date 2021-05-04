@@ -13,8 +13,8 @@ export const getTrendings = (lang = "javascript", period = "weekly") => {
     addStaringZero(weekAgo.getDate())
   ].join("-");
 
-  params.append("sort", "stars");
   params.append("order", "desc");
+  params.append("sort", "stars");
   params.append("q", `language:${lang} created:>${formattedDate}`);
   params.append("per_page", 10);
 

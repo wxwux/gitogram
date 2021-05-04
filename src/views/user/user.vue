@@ -46,12 +46,10 @@ export default {
   },
   methods: {
     ...mapActions({
-      getUser: "user/getUser",
       fetchStarred: "starred/fetchStarred",
     })
   },
   created() {
-    this.getUser();
     this.fetchStarred();
   }
 };

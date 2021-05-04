@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import {
-  feeds, user, friends, auth, stories, repos, following
+  feeds, user, auth, stories, repos, following
 } from "../views";
 
 const routes = [
@@ -11,21 +11,16 @@ const routes = [
   },
   {
     path: "/user",
-    name: "user",
     component: user,
     children: [{
       path: "",
       component: repos,
+      name: "user",
     }, {
       path: "following",
       component: following,
       name: "following"
     }]
-  },
-  {
-    path: "/friends",
-    name: "friends",
-    component: friends
   },
   {
     path: "/auth",

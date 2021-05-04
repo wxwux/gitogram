@@ -1,14 +1,14 @@
 <template>
   <div class="x-container">
-    <ul class="followers">
+    <ul class="subscriptions">
       <li
-        v-for="followerItem in followers"
-        :key="followerItem.id"
-        class="followee"
+        v-for="subscription in subscriptions"
+        :key="subscription.id"
+        class="subscription-item"
       >
-        <follower
-          :username="followerItem.full_name"
-          :avatar="followerItem.owner.avatar_url"
+        <subscription
+          :username="subscription.full_name"
+          :avatar="subscription.owner.avatar_url"
         />
       </li>
     </ul>
@@ -16,24 +16,24 @@
 </template>
 <script>
 import { mapState, mapActions } from "vuex";
-import { follower } from "../../components/follower";
+import { subscription } from "../../components/subscription";
 
 export default {
   components: {
-    follower
+    subscription
   },
   methods: {
     ...mapActions({
-      fetchFollowers: "starred/fetchStarred"
+      fetchSubscription: "starred/fetchStarred"
     })
   },
   computed: {
     ...mapState({
-      followers: (state) => state.starred.data
+      subscriptions: (state) => state.starred.data
     })
   },
   created() {
-    this.fetchFollowers();
+    this.fetchSubscription();
   }
 };
 </script>

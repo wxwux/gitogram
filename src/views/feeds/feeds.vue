@@ -65,7 +65,6 @@ export default {
   },
   methods: {
     ...mapActions({
-      getUser: "user/getUser",
       fetchTrendings: "trendings/fetchTrendings",
       fetchStarred: "starred/fetchStarred",
       fetchIssues: "starred/fetchIssuesForRepo"
@@ -78,7 +77,6 @@ export default {
   mounted() {
     this.fetchTrendings();
     this.fetchStarred({ limit: 10 });
-    // this.getUser();
   }
 };
 
