@@ -19,7 +19,8 @@ module.exports = {
     'quotes': ["error", "double"],
     'comma-dangle': "off",
     'no-unused-vars': "off",
-    'max-len': "off"
+    'max-len': "off",
+    'no-param-reassign' : "off"
   },
   overrides: [
     {

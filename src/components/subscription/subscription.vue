@@ -6,11 +6,12 @@
     <div class="button">
       <x-button
         size="big"
-        theme="green"
-        hoverText="Unfollow"
+        :theme="following ? 'green' : 'white'"
+        :hoverText="following ? 'Unfollow' : 'Follow'"
         rubberish
+        @click="$emit('buttonPressed')"
       >
-        Following
+        {{following ? "Following" : "Unfollowed"}}
       </x-button>
     </div>
   </div>
@@ -30,6 +31,9 @@ export default {
     avatar: {
       type: String,
       required: true
+    },
+    following: {
+      type: Boolean
     }
   }
 };

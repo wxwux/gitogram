@@ -23,15 +23,6 @@ export default {
         return editedRepo;
       });
     },
-    SET_FOLLOWING: (state, payload) => {
-      state.data = state.data.map((repo) => {
-        const editedRepo = repo;
-        if (payload.id === editedRepo.id) {
-          editedRepo.following = payload.following;
-        }
-        return editedRepo;
-      });
-    }
   },
   actions: {
     async fetchTrendings({ state, commit, rootState }) {
@@ -58,15 +49,5 @@ export default {
         throw (e);
       }
     },
-    async starRepo({ commit }, { id, owner, repo }) {
-      try {
-        const { data } = await api.starred.starRepo({ owner, repo });
-        commit("SET_FOLLOWING", { id, following: true });
-        console.log(data);
-      } catch (e) {
-        console.log(e);
-        throw e;
-      }
-    }
   }
 };

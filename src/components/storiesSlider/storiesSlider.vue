@@ -9,7 +9,7 @@
           <li
             class="stories-item"
             v-for="({
-              id, owner, name, readme, following
+              id, owner, readme, following
             }, ndx) in trendings"
             :key="id"
           >
@@ -22,7 +22,7 @@
               :buttons-shown="activeBtns"
               @next="moveSlide('next')"
               @prev="moveSlide('prev')"
-              @followTheRepo="starRepo({id, owner: owner.login, repo: name})"
+              @followTheRepo="starRepo(id)"
             />
           </li>
         </ul>
@@ -61,7 +61,7 @@ export default {
     ...mapActions({
       fetchTrendings: "trendings/fetchTrendings",
       fetchReadme: "trendings/fetchReadmeForRepo",
-      starRepo: "trendings/starRepo"
+      starRepo: "starred/starRepo"
     }),
     moveSlide(direction) {
       const { slider } = this.$refs;

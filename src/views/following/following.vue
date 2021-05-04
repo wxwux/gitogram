@@ -9,28 +9,44 @@
         <subscription
           :username="subscription.full_name"
           :avatar="subscription.owner.avatar_url"
+          :following="subscription.following"
+          @button-pressed="changeSubscription(subscription.id)"
         />
       </li>
     </ul>
   </div>
 </template>
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 import { subscription } from "../../components/subscription";
 
 export default {
   components: {
     subscription
   },
-  methods: {
-    ...mapActions({
-      fetchSubscription: "starred/fetchStarred"
-    })
-  },
   computed: {
     ...mapState({
       subscriptions: (state) => state.starred.data
+    }),
+    ...mapGetters({
+      getStarredRepo: "starred/getStarredRepo"
     })
+  },
+  methods: {
+    ...mapActions({
+      fetchSubscription: "starred/fetchStarred",
+      starRepo: "starred/starRepo",
+      unStarRepo: "starred/unStarRepo"
+    }),
+    changeSubscription(id) {
+      const { following } = this.getStarredRepo(id);
+
+      if (following) {
+        this.unStarRepo(id);
+      } else {
+        this.starRepo(id);
+      }
+    }
   },
   created() {
     this.fetchSubscription();

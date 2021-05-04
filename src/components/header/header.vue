@@ -1,7 +1,7 @@
 <template>
   <header class="c-header">
     <logo @click="$router.push({name: 'feeds'})" />
-    <div class="buttons">
+    <div class="buttons" v-if="Object.keys(user).length">
       <button class="btn-item" @click="$router.push({name: 'feeds'})">
         <icon name="home" />
       </button>

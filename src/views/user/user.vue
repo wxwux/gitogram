@@ -11,7 +11,7 @@
           :login="user.login"
           :user-avatar="user.avatar_url"
           :followers="user.followers"
-          :following="following"
+          :following="followingQty"
         />
       </template>
     </top-line>
@@ -41,7 +41,7 @@ export default {
       user: (state) => state.user.data,
     }),
     ...mapGetters({
-      following: "starred/following"
+      followingQty: "starred/getFollowingQty"
     }),
   },
   methods: {
