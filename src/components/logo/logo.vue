@@ -1,17 +1,29 @@
 <template>
-  <div class="c-logo">
-    <img v-if="white" src="./gitogram_white.svg" alt="gitogram logo">
-    <img v-else src="./gitogram.svg" alt="gitogram logo">
+  <div
+    :class="['c-logo', {'white': white}]"
+  >
+    <gitogram-logo :color="iconColor"></gitogram-logo>
   </div>
 </template>
 
 <script>
+import gitogramLogo from "./gitogram";
+
 export default {
   name: "Logo",
+  components: {
+    gitogramLogo
+  },
   props: {
     white: {
       type: Boolean,
       default: false
+    }
+  },
+  computed: {
+    iconColor() {
+      if (this.white) return "#fff";
+      return "#000";
     }
   }
 };

@@ -4,16 +4,13 @@
 
 .stories {
   display: flex;
-}
-
-.stories-item {
-  margin-right: 25px;
-
-  &:last-child {
-    margin-right: 0;
-  }
+  justify-content: space-between;
 }
 
 .feeds-item {
   margin-bottom: 40px;
+}
+
+.content-wrapper {
+  padding: 0 10%;
 }

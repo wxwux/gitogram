@@ -18,26 +18,28 @@
     </top-line>
   </div>
   <div class="x-container">
-    <ul class="feeds">
-      <li class="feeds-item"
-          v-for="{
+    <div class="content-wrapper">
+      <ul class="feeds">
+        <li class="feeds-item"
+            v-for="{
               id, name, owner, description, stargazers_count, forks, issues, created_at
           } in starred"
-          :key="id"
-      >
-        <feed
-          :userpic="owner.avatar_url"
-          :username="owner.login"
-          :title="name"
-          :description="description"
-          :stars="stargazers_count"
-          :forks="forks"
-          :issues="issues"
-          :date="new Date(created_at)"
-          @openIssues="fetchIssues({id, owner: owner.login, repo: name})"
-        />
-      </li>
-    </ul>
+            :key="id"
+        >
+          <feed
+            :userpic="owner.avatar_url"
+            :username="owner.login"
+            :title="name"
+            :description="description"
+            :stars="stargazers_count"
+            :forks="forks"
+            :issues="issues"
+            :date="new Date(created_at)"
+            @openIssues="fetchIssues({id, owner: owner.login, repo: name})"
+          />
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 

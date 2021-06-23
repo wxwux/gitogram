@@ -7,15 +7,18 @@
       />
     </div>
     <div class="content">
-      <h2>{{title}}</h2>
-      <p>
-        {{description}}
-      </p>
+      <div class="text">
+        <h2>{{title}}</h2>
+        <p>
+          {{description}}
+        </p>
+      </div>
+      <div class="stat">
+        <stats :stars="stars" :forks="forks"/>
+      </div>
     </div>
-    <div class="stat">
-      <stats :stars="stars" :forks="forks"/>
-    </div>
-    <x-button @click="$emit('openIssues')">Открыть Issues</x-button>
+    <toggler text="Open"></toggler>
+<!--    <x-button @click="$emit('openIssues')">Открыть Issues</x-button>-->
     <ul class="comments" v-if="issues?.length">
       <li class="comments-item" v-for="issue in issues" :key="issue.id">
         <comment
@@ -36,6 +39,7 @@ import { user } from "../user";
 import { stats } from "../stats";
 import { comment } from "../comment";
 import { button } from "../button";
+import { toggler } from "../toggler";
 
 export default {
   name: "Feed",
@@ -44,6 +48,7 @@ export default {
     user,
     stats,
     comment,
+    toggler,
     xButton: button
   },
   props: {
