@@ -8,7 +8,7 @@
     </div>
     <div class="content">
       <div class="text">
-        <h2>{{title}}</h2>
+        <h2 class="title">{{title}}</h2>
         <p>
           {{description}}
         </p>
@@ -17,7 +17,9 @@
         <stats :stars="stars" :forks="forks"/>
       </div>
     </div>
-    <toggler @toggle="handleToggle"/>
+    <div class="toggler">
+      <toggler @toggle="handleToggle"/>
+    </div>
     <ul
       class="comments"
       v-if="issues?.length && listShown"

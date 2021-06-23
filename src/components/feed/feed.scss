@@ -1,11 +1,16 @@
 .header {
-  margin-bottom: 15px;
+  margin-bottom: 14px;
 }
 .content {
-  padding: 24px 20px;
-  margin-bottom: 20px;
+  padding: 16px 20px;
+  margin-bottom: 17px;
   border-radius: 10px;
   box-shadow: 0 4px 40px 0 rgba(#000, .07);
+}
+
+.title {
+  font-size: 26px;
+  margin-bottom: 5px;
 }
 
 .text {
@@ -16,9 +21,10 @@
   display: flex;
 }
 
-.comments-item {
-  margin-bottom: 10px;
+.toggler {
+  margin-bottom: 6px;
 }
+
 
 .date {
   font-size: 14px;

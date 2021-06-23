@@ -3,7 +3,7 @@
     <div class="stats-item">
       <div class="title">
         <icon name="star"/>
-        <div class="title-text">Stars</div>
+        <div class="title-text">Star</div>
       </div>
       <div class="counter">{{stars}}</div>
     </div>

@@ -10,6 +10,10 @@
   display: flex;
   line-height: 28px;
   font-size: 14px;
+
+  &:not(:last-child) {
+    border-right: 2px solid #E0E2E3;
+  }
 }
 
 .title {
