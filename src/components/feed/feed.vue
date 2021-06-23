@@ -17,9 +17,11 @@
         <stats :stars="stars" :forks="forks"/>
       </div>
     </div>
-    <toggler text="Open"></toggler>
-<!--    <x-button @click="$emit('openIssues')">Открыть Issues</x-button>-->
-    <ul class="comments" v-if="issues?.length">
+    <toggler @toggle="handleToggle"/>
+    <ul
+      class="comments"
+      v-if="issues?.length && listShown"
+    >
       <li class="comments-item" v-for="issue in issues" :key="issue.id">
         <comment
           :username="issue.user.login"
@@ -50,6 +52,11 @@ export default {
     comment,
     toggler,
     xButton: button
+  },
+  data() {
+    return {
+      listShown: false
+    };
   },
   props: {
     userpic: {
@@ -87,28 +94,17 @@ export default {
   },
   computed: {
     humanReadableDate() {
-      // let month =
-      const getMonthName = (monthNum) => {
-        let monthName = "";
-        switch (monthNum) {
-          case 1: monthName = "January"; break;
-          case 2: monthName = "February"; break;
-          case 3: monthName = "March"; break;
-          case 4: monthName = "April"; break;
-          case 5: monthName = "May"; break;
-          case 6: monthName = "June"; break;
-          case 7: monthName = "July"; break;
-          case 8: monthName = "August"; break;
-          case 9: monthName = "September"; break;
-          case 10: monthName = "October"; break;
-          case 11: monthName = "November"; break;
-          case 12: monthName = "December"; break;
-          default: monthName = "January";
-        }
+      const date = new Date(this.date);
+      return date.toLocaleString("en-EN", { month: "short", day: "numeric" });
+    }
+  },
+  methods: {
+    handleToggle(isOpened) {
+      this.listShown = isOpened;
 
-        return monthName;
-      };
-      return `${getMonthName(this.date.getMonth() + 1)} ${this.date.getDay()}`;
+      if (isOpened && this.issues.length === 0) {
+        this.$emit("loadContent");
+      }
     }
   }
 };

@@ -35,7 +35,7 @@
             :forks="forks"
             :issues="issues"
             :date="new Date(created_at)"
-            @openIssues="fetchIssues({id, owner: owner.login, repo: name})"
+            @loadContent="loadIssues({id, owner: owner.login, repo: name})"
           />
         </li>
       </ul>
@@ -71,6 +71,9 @@ export default {
       fetchStarred: "starred/fetchStarred",
       fetchIssues: "starred/fetchIssuesForRepo"
     }),
+    loadIssues({ id, owner, repo }) {
+      this.fetchIssues({ id, owner, repo });
+    },
     goTo(routeName) {
       // console.log(this.);
       // router.push({name: 'stories'})
