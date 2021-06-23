@@ -1,29 +1,39 @@
 <template>
   <div :class="['c-story-post-item', {active: active}]">
     <div class="stories-container">
-      <div class="progress">
-        <x-progress :segments="1" />
-      </div>
-      <div class="content">
-        <div class="header">
+      <div class="header">
+        <div class="progress">
+          <x-progress :segments="1" />
+        </div>
+        <div class="user">
           <user
             :username="username"
             :src="userAvatar"
           />
         </div>
+      </div>
+      <div class="content">
         <div v-if="content?.length" class="info">
           <div class="content-text" v-html="content"></div>
         </div>
-        <div class="button">
-          <x-button size="big" :theme="buttonTheme" @click="$emit('followTheRepo')">
-            {{following ? 'Unfollow': 'Follow'}}
-          </x-button>
-        </div>
+      </div>
+      <div class="button">
+        <x-button size="big" :theme="buttonTheme" @click="$emit('followTheRepo')">
+          {{following ? 'Unfollow': 'Follow'}}
+        </x-button>
       </div>
     </div>
     <template v-if="active">
-      <button v-if="buttonsShown.includes('next')" class="btn btn-next" @click="$emit('next')">next</button>
-      <button v-if="buttonsShown.includes('prev')" class="btn btn-prev" @click="$emit('prev')">prev</button>
+      <button v-if="buttonsShown.includes('next')" class="btn btn-next" @click="$emit('next')">
+        <span class="icon">
+          <icon name="arrow" />
+        </span>
+      </button>
+      <button v-if="buttonsShown.includes('prev')" class="btn btn-prev" @click="$emit('prev')">
+        <span class="icon">
+          <icon name="arrow" />
+        </span>
+      </button>
     </template>
   </div>
 </template>
@@ -32,10 +42,13 @@
 import { user } from "../user";
 import { button } from "../button";
 import { progress } from "../progress";
+import { icon } from "../../icons";
 
 export default {
   name: "StoryUserItem",
-  components: { user, xButton: button, xProgress: progress },
+  components: {
+    user, xButton: button, xProgress: progress, icon
+  },
   props: {
     active: Boolean,
     userAvatar: {

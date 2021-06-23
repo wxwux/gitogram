@@ -8,6 +8,7 @@
         >
           <li
             class="stories-item"
+            ref="item"
             v-for="({
               id, owner, readme, following
             }, ndx) in trendings"
@@ -65,15 +66,17 @@ export default {
     }),
     moveSlide(direction) {
       const { slider } = this.$refs;
+      const { item } = this.$refs;
+      const slideWidth = parseInt(getComputedStyle(item).getPropertyValue("width"), 10);
 
       switch (direction) {
         case "next":
           this.index += 1;
-          this.sliderPosition -= 300;
+          this.sliderPosition -= slideWidth;
           break;
         case "prev":
           this.index -= 1;
-          this.sliderPosition += 300;
+          this.sliderPosition += slideWidth;
           break;
         default: this.index += 1;
       }

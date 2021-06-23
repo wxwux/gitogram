@@ -1,13 +1,18 @@
 .c-story-post-item {
-  height: 660px;
+  height: 664px;
   position: relative;
-  transform: scale(.4);
-  width: 300px;
+  transform: scale(.8);
+  width: 376px;
   transition: .4s;
 
   &.active {
     transform: scale(1);
+    z-index: var(--z-active-slide);
   }
+}
+
+.user {
+  padding: 0 6px;
 }
 
 .stories-container {
@@ -15,22 +20,23 @@
   overflow: hidden;
   background: #fff;
   color: #404040;
-  padding: 8px;
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
 .header {
-  margin-bottom: 30px;
+  padding: 8px;
+  padding-bottom: 11px;
+  border-bottom: 1px solid #CACACA;
 }
 
 .progress {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .content {
-  padding: 6px;
+  padding: 6px 20px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -38,10 +44,9 @@
 
 .info {
   flex: 1;
-  margin-bottom: 20px;
   font-size: 10px;
   overflow-y: auto;
-  max-height: 460px;
+  max-height: 464px;
   overflow-x: hidden;
 }
 
@@ -49,23 +54,37 @@
   margin-top: auto;
   display: flex;
   flex-direction: column;
-  padding: 0 20px;
+  padding: 30px 52px;
+  box-shadow: 0 0 10px rgba(00, 00, 00, .3);
+}
+
+.icon {
+  display: block;
 }
 
 .btn {
   position: absolute;
   top: 50%;
-  display: block;
-  width: 50px;
-  height: 50px;
-  color: #fff;
-  border: 1px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--grey);
+  border: 2px solid #000;
+  background: #fff;
+  border-radius: 50%;
+  transform: translateY(-50%);
 
   &-prev {
-    left: -100px;
+    left: -58px;
+
+    .icon {
+      transform: rotate(-180deg);
+    }
   }
 
   &-next {
-    right: -100px;
+    right: -58px;
   }
 }
