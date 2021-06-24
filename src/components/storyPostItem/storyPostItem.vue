@@ -13,8 +13,10 @@
         </div>
       </div>
       <div class="content">
-        <spinner />
-        <div class="info" v-if="false">
+        <div class="loader" v-if="loading">
+          <spinner />
+        </div>
+        <div class="info" v-else>
           <div v-if="content?.length" class="content-text" v-html="content"></div>
           <placeholder v-else :paragraphs="2"/>
         </div>
@@ -60,6 +62,7 @@ export default {
   },
   props: {
     active: Boolean,
+    loading: Boolean,
     userAvatar: {
       type: String,
       required: true

@@ -20,9 +20,10 @@
               :content="readme"
               :active="ndx === index"
               :following="following"
+              :loading="ndx === index && loading"
               :buttons-shown="activeBtns"
-              @next="moveSlide('next')"
-              @prev="moveSlide('prev')"
+              @next="handleSlide('next')"
+              @prev="handleSlide('prev')"
               @followTheRepo="starRepo(id)"
             />
           </li>
@@ -41,7 +42,9 @@ export default {
   data() {
     return {
       index: 0,
-      sliderPosition: 0
+      sliderPosition: 0,
+      btnsShown: true,
+      loading: false
     };
   },
   computed: {
@@ -49,6 +52,7 @@ export default {
       trendings: (state) => state.trendings.data
     }),
     activeBtns() {
+      if (this.btnsShown === false) return [];
       if (this.index === 0) return ["next"];
       if (this.index === this.trendings.length - 1) return ["prev"];
       return ["next", "prev"];
@@ -68,10 +72,9 @@ export default {
       const { id, owner, repo } = this.activeSlideData;
       await this.fetchReadme({ id, owner, repo });
     },
-    async moveSlide(direction) {
+    moveSlide(direction) {
       const { slider, item } = this.$refs;
       const slideWidth = parseInt(getComputedStyle(item).getPropertyValue("width"), 10);
-
       switch (direction) {
         case "next":
           this.index += 1;
@@ -85,12 +88,27 @@ export default {
       }
 
       slider.style.transform = `translateX(${this.sliderPosition}px)`;
-      await this.fetchReadmeForActiveSlide();
+    },
+    async loadReadme() {
+      this.btnsShown = false;
+      this.loading = true;
+      try {
+        await this.fetchReadmeForActiveSlide();
+      } catch (e) {
+        console.log(e);
+      } finally {
+        this.btnsShown = true;
+        this.loading = false;
+      }
+    },
+    async handleSlide(direction) {
+      this.moveSlide(direction);
+      await this.loadReadme();
     }
   },
   async mounted() {
     await this.fetchTrendings();
-    await this.fetchReadmeForActiveSlide();
+    await this.loadReadme();
   },
 };
 
