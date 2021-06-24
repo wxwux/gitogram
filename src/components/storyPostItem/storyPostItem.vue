@@ -13,8 +13,9 @@
         </div>
       </div>
       <div class="content">
-        <div v-if="content?.length" class="info">
-          <div class="content-text" v-html="content"></div>
+        <div class="info">
+          <div v-if="content?.length" class="content-text" v-html="content"></div>
+          <placeholder v-else :paragraphs="2"/>
         </div>
       </div>
       <div class="button">
@@ -43,11 +44,16 @@ import { user } from "../user";
 import { button } from "../button";
 import { progress } from "../progress";
 import { icon } from "../../icons";
+import { placeholder } from "../placeholder";
 
 export default {
   name: "StoryUserItem",
   components: {
-    user, xButton: button, xProgress: progress, icon
+    user,
+    xButton: button,
+    xProgress: progress,
+    icon,
+    placeholder
   },
   props: {
     active: Boolean,

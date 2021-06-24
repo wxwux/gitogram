@@ -65,8 +65,7 @@ export default {
       starRepo: "starred/starRepo"
     }),
     moveSlide(direction) {
-      const { slider } = this.$refs;
-      const { item } = this.$refs;
+      const { slider, item } = this.$refs;
       const slideWidth = parseInt(getComputedStyle(item).getPropertyValue("width"), 10);
 
       switch (direction) {
@@ -87,8 +86,10 @@ export default {
       this.fetchReadme({ id, owner, repo });
     }
   },
-  mounted() {
-    this.fetchTrendings();
+  async mounted() {
+    await this.fetchTrendings();
+    const { id, owner, repo } = this.activeSlideData;
+    await this.fetchReadme({ id, owner, repo });
   },
 };
 

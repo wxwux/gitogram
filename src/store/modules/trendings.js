@@ -24,6 +24,9 @@ export default {
       });
     },
   },
+  getters: {
+    getRepoById: (state) => (id) => state.data.find((trendingRepo) => trendingRepo.id === id)
+  },
   actions: {
     async fetchTrendings({ state, commit, rootState }) {
       if (state.data.length > 0) return;
@@ -38,8 +41,8 @@ export default {
         throw e;
       }
     },
-    async fetchReadmeForRepo({ state, commit }, { id, owner, repo }) {
-      const curRepo = state.data.find((trendingRepo) => trendingRepo.id === id);
+    async fetchReadmeForRepo({ state, commit, getters }, { id, owner, repo }) {
+      const curRepo = getters.getRepoById(id);
       if (curRepo.readme !== undefined) return;
       try {
         const { data } = await api.readme.getReadme({ owner, repo });

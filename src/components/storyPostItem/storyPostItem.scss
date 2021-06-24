@@ -36,18 +36,17 @@
 }
 
 .content {
-  padding: 6px 20px;
   flex: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
 }
 
 .info {
+  padding: 22px 20px 6px 20px;
   flex: 1;
   font-size: 10px;
-  overflow-y: auto;
-  max-height: 464px;
-  overflow-x: hidden;
 }
 
 .button {
