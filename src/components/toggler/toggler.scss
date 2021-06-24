@@ -1,0 +1,23 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+
+  .icon {
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  &.active {
+    .icon {
+      svg {
+        transform: rotate(0deg);
+      }
+    }
+  }
+}
+
+.text {
+  margin-right: 5px;
+}

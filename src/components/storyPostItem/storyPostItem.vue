@@ -13,7 +13,8 @@
         </div>
       </div>
       <div class="content">
-        <div class="info">
+        <spinner />
+        <div class="info" v-if="false">
           <div v-if="content?.length" class="content-text" v-html="content"></div>
           <placeholder v-else :paragraphs="2"/>
         </div>
@@ -45,6 +46,7 @@ import { button } from "../button";
 import { progress } from "../progress";
 import { icon } from "../../icons";
 import { placeholder } from "../placeholder";
+import { spinner } from "../spinner";
 
 export default {
   name: "StoryUserItem",
@@ -53,7 +55,8 @@ export default {
     xButton: button,
     xProgress: progress,
     icon,
-    placeholder
+    placeholder,
+    spinner
   },
   props: {
     active: Boolean,

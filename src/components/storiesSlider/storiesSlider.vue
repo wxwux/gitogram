@@ -64,7 +64,11 @@ export default {
       fetchReadme: "trendings/fetchReadmeForRepo",
       starRepo: "starred/starRepo"
     }),
-    moveSlide(direction) {
+    async fetchReadmeForActiveSlide() {
+      const { id, owner, repo } = this.activeSlideData;
+      await this.fetchReadme({ id, owner, repo });
+    },
+    async moveSlide(direction) {
       const { slider, item } = this.$refs;
       const slideWidth = parseInt(getComputedStyle(item).getPropertyValue("width"), 10);
 
@@ -81,15 +85,12 @@ export default {
       }
 
       slider.style.transform = `translateX(${this.sliderPosition}px)`;
-
-      const { id, owner, repo } = this.activeSlideData;
-      this.fetchReadme({ id, owner, repo });
+      await this.fetchReadmeForActiveSlide();
     }
   },
   async mounted() {
     await this.fetchTrendings();
-    const { id, owner, repo } = this.activeSlideData;
-    await this.fetchReadme({ id, owner, repo });
+    await this.fetchReadmeForActiveSlide();
   },
 };
 
