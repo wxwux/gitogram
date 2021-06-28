@@ -6,7 +6,7 @@
       </template>
     </top-line>
   </div>
-  <div class="x-container">
+  <div class="x-container container">
     <div class="wrapper">
       <div class="user">
         <about

@@ -1,11 +1,10 @@
 <template>
-  <div class="x-container">
     <ul class="posts">
       <li class="post-item"
           v-for="repo in publicRepos"
           :key="repo.id"
       >
-        <post
+        <repo-info
           :title="repo.name"
           :description="repo.description"
           :forks="repo.forks"
@@ -13,15 +12,16 @@
         />
       </li>
     </ul>
-  </div>
 </template>
 <script>
 import { mapActions, mapState } from "vuex";
 import { post } from "../../components/post";
+import { repoInfo } from "../../components/repoInfo";
 
 export default {
   name: "User",
   components: {
+    repoInfo,
     post,
   },
   computed: {
