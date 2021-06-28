@@ -2,6 +2,7 @@
   <div class="c-stories-slider">
     <div class="x-container">
       <div class="stories-container">
+        <pre>{{initialSlideId}}</pre>
         <ul
           class="stories"
           ref="slider"
@@ -22,8 +23,8 @@
               :following="following"
               :loading="ndx === index && loading"
               :buttons-shown="activeBtns"
-              @next="handleSlide('next')"
-              @prev="handleSlide('prev')"
+              @next="handleSlide(index + 1)"
+              @prev="handleSlide(index - 1)"
               @followTheRepo="starRepo(id)"
             />
           </li>
@@ -39,6 +40,11 @@ import { storyPostItem } from "../storyPostItem";
 
 export default {
   components: { storyPostItem },
+  props: {
+    initialSlideId: {
+      type: String,
+    }
+  },
   data() {
     return {
       index: 0,
@@ -57,10 +63,6 @@ export default {
       if (this.index === this.trendings.length - 1) return ["prev"];
       return ["next", "prev"];
     },
-    activeSlideData() {
-      const { id, owner, name } = this.trendings[this.index];
-      return { id, owner: owner.login, repo: name };
-    },
   },
   methods: {
     ...mapActions({
@@ -69,23 +71,15 @@ export default {
       starRepo: "starred/starRepo"
     }),
     async fetchReadmeForActiveSlide() {
-      const { id, owner, repo } = this.activeSlideData;
-      await this.fetchReadme({ id, owner, repo });
+      const { id, owner, name } = this.trendings[this.index];
+      await this.fetchReadme({ id, owner: owner.login, repo: name });
     },
-    moveSlide(direction) {
+    moveSlide(slideNum) {
       const { slider, item } = this.$refs;
       const slideWidth = parseInt(getComputedStyle(item).getPropertyValue("width"), 10);
-      switch (direction) {
-        case "next":
-          this.index += 1;
-          this.sliderPosition -= slideWidth;
-          break;
-        case "prev":
-          this.index -= 1;
-          this.sliderPosition += slideWidth;
-          break;
-        default: this.index += 1;
-      }
+
+      this.index = slideNum;
+      this.sliderPosition = -(slideWidth * slideNum);
 
       slider.style.transform = `translateX(${this.sliderPosition}px)`;
     },
@@ -101,12 +95,17 @@ export default {
         this.loading = false;
       }
     },
-    async handleSlide(direction) {
-      this.moveSlide(direction);
+    async handleSlide(slideNum) {
+      this.moveSlide(slideNum);
       await this.loadReadme();
     }
   },
   async mounted() {
+    if (this.initialSlideId) {
+      const ndx = this.trendings.findIndex((item) => item.id === this.initialSlideId);
+      await this.handleSlide(ndx);
+    }
+
     await this.fetchTrendings();
     await this.loadReadme();
   },

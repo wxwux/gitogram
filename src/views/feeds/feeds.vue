@@ -6,11 +6,11 @@
       </template>
       <template #content>
         <ul class="stories">
-          <li class="stories-item" v-for="{id, owner, name} in trendings" :key="id">
+          <li class="stories-item" v-for="{ id, owner, name } in trendings" :key="id">
             <story-user-item
               :src="owner.avatar_url"
               :username="name"
-              @storyPress="$router.push({name: 'stories'})"
+              @storyPress="$router.push({ name: 'stories', params: { initialSlideId: id } })"
             />
           </li>
         </ul>
@@ -20,11 +20,19 @@
   <div class="x-container">
     <div class="content-wrapper">
       <ul class="feeds">
-        <li class="feeds-item"
-            v-for="{
-              id, name, owner, description, stargazers_count, forks, issues, created_at
+        <li
+          class="feeds-item"
+          v-for="{
+            id,
+            name,
+            owner,
+            description,
+            stargazers_count,
+            forks,
+            issues,
+            created_at,
           } in starred"
-            :key="id"
+          :key="id"
         >
           <feed
             :userpic="owner.avatar_url"
@@ -32,7 +40,7 @@
             :issues="issues?.data"
             :date="new Date(created_at)"
             :loading="issues?.loading"
-            @loadContent="loadIssues({id, owner: owner.login, repo: name})"
+            @loadContent="loadIssues({ id, owner: owner.login, repo: name })"
           >
             <template #info>
               <repo-info
@@ -65,34 +73,29 @@ export default {
     storyUserItem,
     xHeader: header,
     topLine,
-    feed
+    feed,
   },
   computed: {
     ...mapState({
       trendings: (state) => state.trendings.data,
-      starred: (state) => state.starred.data
-    })
+      starred: (state) => state.starred.data,
+    }),
   },
   methods: {
     ...mapActions({
       fetchTrendings: "trendings/fetchTrendings",
       fetchStarred: "starred/fetchStarred",
-      fetchIssues: "starred/fetchIssuesForRepo"
+      fetchIssues: "starred/fetchIssuesForRepo",
     }),
     loadIssues({ id, owner, repo }) {
       this.fetchIssues({ id, owner, repo });
     },
-    goTo(routeName) {
-      // console.log(this.);
-      // router.push({name: 'stories'})
-    }
   },
   mounted() {
     this.fetchTrendings();
     this.fetchStarred({ limit: 10 });
-  }
+  },
 };
-
 </script>
 
 <style lang="scss" src="./feeds.scss" scoped></style>
