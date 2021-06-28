@@ -1,4 +1,11 @@
 <template>
+  <div class="c-repos">
+    <div class="header">
+      <page-header
+        :title="pageTitle"
+        :qty="publicRepos.length"
+      />
+    </div>
     <ul class="posts">
       <li class="post-item"
           v-for="repo in publicRepos"
@@ -12,17 +19,23 @@
         />
       </li>
     </ul>
+  </div>
 </template>
 <script>
 import { mapActions, mapState } from "vuex";
 import { post } from "../../components/post";
 import { repoInfo } from "../../components/repoInfo";
+import { pageHeader } from "../../components/pageHeader";
 
 export default {
   name: "User",
   components: {
     repoInfo,
     post,
+    pageHeader
+  },
+  props: {
+    pageTitle: String
   },
   computed: {
     ...mapState({

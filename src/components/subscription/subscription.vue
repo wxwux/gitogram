@@ -1,11 +1,10 @@
 <template>
   <div class="c-subscription">
     <div class="user">
-      <user :username="username" :src="avatar"  size="medium"/>
+      <user :type="type" :username="username" :src="avatar"  size="medium"/>
     </div>
     <div class="button">
       <x-button
-        size="big"
         :theme="following ? 'green' : 'white'"
         :hoverText="following ? 'Unfollow' : 'Follow'"
         rubberish
@@ -24,6 +23,10 @@ import { button } from "../button";
 export default {
   components: { user, xButton: button },
   props: {
+    type: {
+      type: String,
+      default: ""
+    },
     username: {
       type: String,
       required: true

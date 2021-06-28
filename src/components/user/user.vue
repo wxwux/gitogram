@@ -8,7 +8,10 @@
         :username="username"
       />
     </div>
-    <div class="username">{{username}}</div>
+    <div class="data">
+      <div class="username">{{username}}</div>
+      <div class="type" v-if="type.length">{{type.toLowerCase()}}</div>
+    </div>
   </div>
 </template>
 
@@ -22,6 +25,10 @@ export default {
     avatar
   },
   props: {
+    type: {
+      type: String,
+      default: ""
+    },
     src: {
       type: String,
       required: true

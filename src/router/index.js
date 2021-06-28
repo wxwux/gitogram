@@ -16,10 +16,16 @@ const routes = [
       path: "",
       component: repos,
       name: "user",
+      props: {
+        pageTitle: "Repositories"
+      }
     }, {
       path: "following",
       component: following,
-      name: "following"
+      name: "following",
+      props: {
+        pageTitle: "Following"
+      }
     }]
   },
   {

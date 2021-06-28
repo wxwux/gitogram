@@ -4,10 +4,19 @@
 
   &.size-medium {
     .avatar {
-      width: 112px;
+      width: 72px;
       margin-right: 26px;
     }
+
+    .username {
+      font-size: 18px;
+    }
   }
+}
+
+.type {
+  font-size: 12px;
+  color: rgba(168, 168, 168, 1);
 }
 
 .avatar {

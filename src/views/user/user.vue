@@ -9,6 +9,7 @@
   <div class="x-container container">
     <div class="wrapper">
       <div class="user">
+        <div class="title">My profile</div>
         <about
           v-if="user.login"
           :username="user.name"

@@ -1,6 +1,10 @@
 <template>
   <button
-    :class="['c-button', `theme-${theme}`, `size-${size}`, {'hover-text': withHoverText}, {rubberish: rubberish}]"
+    :class="[
+      'c-button', `theme-${theme}`,
+      {[`size-${size}`]: size.length && rubberish === false},
+      {'hover-text': withHoverText}, {rubberish: rubberish}
+    ]"
     :data-hover-text="hoverText"
   >
     <span class="btn-text">
