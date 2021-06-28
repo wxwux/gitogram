@@ -7,15 +7,7 @@
       />
     </div>
     <div class="content">
-      <div class="text">
-        <h2 class="title">{{title}}</h2>
-        <p>
-          {{description}}
-        </p>
-      </div>
-      <div class="stat">
-        <stats :stars="stars" :forks="forks"/>
-      </div>
+      <slot name="info" />
     </div>
     <div class="toggler">
       <toggler @toggle="handleToggle"/>
@@ -40,7 +32,6 @@
 <script>
 import { avatar } from "../avatar";
 import { user } from "../user";
-import { stats } from "../stats";
 import { comment } from "../comment";
 import { button } from "../button";
 import { toggler } from "../toggler";
@@ -50,7 +41,6 @@ export default {
   components: {
     avatar,
     user,
-    stats,
     comment,
     toggler,
     xButton: button
@@ -66,22 +56,6 @@ export default {
       required: true
     },
     username: {
-      type: String,
-      required: true
-    },
-    description: {
-      type: String,
-      required: true
-    },
-    stars: {
-      type: Number,
-      required: true
-    },
-    forks: {
-      type: Number,
-      required: true
-    },
-    title: {
       type: String,
       required: true
     },

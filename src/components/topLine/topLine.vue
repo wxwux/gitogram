@@ -4,7 +4,7 @@
       <div class="headline">
         <slot name="headline"></slot>
       </div>
-      <div class="content">
+      <div class="content" v-if="$slots.content">
         <slot name="content"></slot>
       </div>
     </div>

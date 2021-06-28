@@ -29,14 +29,19 @@
           <feed
             :userpic="owner.avatar_url"
             :username="owner.login"
-            :title="name"
-            :description="description"
-            :stars="stargazers_count"
-            :forks="forks"
             :issues="issues"
             :date="new Date(created_at)"
             @loadContent="loadIssues({id, owner: owner.login, repo: name})"
-          />
+          >
+            <template #info>
+              <repo-info
+                :description="description"
+                :title="name"
+                :stars="stargazers_count"
+                :forks="forks"
+              />
+            </template>
+          </feed>
         </li>
       </ul>
     </div>
@@ -50,10 +55,13 @@ import { header } from "../../components/header";
 import { topLine } from "../../components/topLine";
 import { storyUserItem } from "../../components/storyUserItem";
 import { feed } from "../../components/feed";
+import { repoInfo } from "../../components/repoInfo";
+import RepoInfo from "../../components/repoInfo/repoInfo";
 
 export default {
   name: "Feeds",
   components: {
+    RepoInfo,
     storyUserItem,
     xHeader: header,
     topLine,

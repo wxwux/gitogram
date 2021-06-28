@@ -4,7 +4,11 @@
       <template #headline>
         <x-header></x-header>
       </template>
-      <template #content>
+    </top-line>
+  </div>
+  <div class="x-container">
+    <div class="wrapper">
+      <div class="user">
         <about
           v-if="user.login"
           :username="user.name"
@@ -13,10 +17,12 @@
           :followers="user.followers"
           :following="followingQty"
         />
-      </template>
-    </top-line>
+      </div>
+      <div class="content">
+        <router-view></router-view>
+      </div>
+    </div>
   </div>
-  <router-view></router-view>
 </template>
 
 <script>
