@@ -1,0 +1,19 @@
+.c-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.counter {
+  font-size: 18px;
+  color: var(--lightGray);
+  font-weight: bold;
+}
+
+
+

@@ -15,7 +15,7 @@
             <span class="stats-title">followers</span>
           </li>
           <li class="stats-item">
-            <router-link :to="{name: 'following'}">
+            <router-link :to="{name: 'following'}" class="watchers">
               <span class="stats-int">{{following}}</span>
               <span class="stats-title">following</span>
             </router-link>
