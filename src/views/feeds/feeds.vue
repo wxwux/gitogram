@@ -29,8 +29,9 @@
           <feed
             :userpic="owner.avatar_url"
             :username="owner.login"
-            :issues="issues"
+            :issues="issues?.data"
             :date="new Date(created_at)"
+            :loading="issues?.loading"
             @loadContent="loadIssues({id, owner: owner.login, repo: name})"
           >
             <template #info>
@@ -56,12 +57,11 @@ import { topLine } from "../../components/topLine";
 import { storyUserItem } from "../../components/storyUserItem";
 import { feed } from "../../components/feed";
 import { repoInfo } from "../../components/repoInfo";
-import RepoInfo from "../../components/repoInfo/repoInfo";
 
 export default {
   name: "Feeds",
   components: {
-    RepoInfo,
+    repoInfo,
     storyUserItem,
     xHeader: header,
     topLine,

@@ -1,30 +1,26 @@
 <template>
   <div class="c-feed">
     <div class="header">
-      <user
-        :src="userpic"
-        :username="username"
-      />
+      <user :src="userpic" :username="username" />
     </div>
     <div class="content">
       <slot name="info" />
     </div>
     <div class="toggler">
-      <toggler @toggle="handleToggle"/>
+      <toggler @toggle="handleToggle" />
     </div>
-    <ul
-      class="comments"
-      v-if="issues?.length && listShown"
-    >
-      <li class="comments-item" v-for="issue in issues" :key="issue.id">
-        <comment
-          :username="issue.user.login"
-          :text="issue.title"
-        />
-      </li>
-    </ul>
+    <div class="content-loader" v-if="loading">
+      <content-loader />
+    </div>
+    <div class="comments-container" v-if="issues?.length && listShown">
+      <ul class="comments">
+        <li class="comments-item" v-for="issue in issues" :key="issue.id">
+          <comment :username="issue.user.login" :text="issue.title" />
+        </li>
+      </ul>
+    </div>
     <div class="date">
-      {{humanReadableDate}}
+      {{ humanReadableDate }}
     </div>
   </div>
 </template>
@@ -35,6 +31,7 @@ import { user } from "../user";
 import { comment } from "../comment";
 import { button } from "../button";
 import { toggler } from "../toggler";
+import { contentLoader } from "../contentLoader";
 
 export default {
   name: "Feed",
@@ -43,36 +40,40 @@ export default {
     user,
     comment,
     toggler,
-    xButton: button
+    xButton: button,
+    contentLoader
   },
   data() {
     return {
-      listShown: false
+      listShown: false,
     };
   },
   props: {
+    loading: {
+      type: Boolean,
+    },
     userpic: {
       type: String,
-      required: true
+      required: true,
     },
     username: {
       type: String,
-      required: true
+      required: true,
     },
     issues: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     date: {
       type: Date,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     humanReadableDate() {
       const date = new Date(this.date);
       return date.toLocaleString("en-EN", { month: "short", day: "numeric" });
-    }
+    },
   },
   methods: {
     handleToggle(isOpened) {
@@ -81,10 +82,9 @@ export default {
       if (isOpened && this.issues.length === 0) {
         this.$emit("loadContent");
       }
-    }
-  }
+    },
+  },
 };
-
 </script>
 
 <style lang="scss" scoped src="./feed.scss"></style>

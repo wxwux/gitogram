@@ -3,7 +3,7 @@ import * as api from "../../api";
 export default {
   namespaced: true,
   state: {
-    data: []
+    data: [],
   },
   mutations: {
     SET_STARRED: (state, starred) => {
@@ -29,11 +29,11 @@ export default {
         }
         return editedRepo;
       });
-    }
+    },
   },
   getters: {
     getFollowingQty: (state) => state.data.length,
-    getStarredRepo: (state) => (id) => state.data.find((repo) => repo.id === id)
+    getStarredRepo: (state) => (id) => state.data.find((repo) => repo.id === id),
   },
   actions: {
     async fetchStarred({ commit }, payload) {
@@ -47,13 +47,31 @@ export default {
       }
     },
     async fetchIssuesForRepo({ commit }, { id, owner, repo }) {
+      commit("SET_ISSUES_TO_REPO", {
+        id,
+        issues: {
+          loading: true,
+        },
+      });
+
       try {
         const { data } = await api.issues.getIssues({ owner, repo });
 
-        console.log(id, data);
-
-        commit("SET_ISSUES_TO_REPO", { id, issues: data });
+        commit("SET_ISSUES_TO_REPO", {
+          id,
+          issues: {
+            data,
+            loading: false
+          },
+        });
       } catch (e) {
+        commit("SET_ISSUES_TO_REPO", {
+          id,
+          issues: {
+            loading: false,
+            error: e
+          },
+        });
         console.log(e);
         throw e;
       }
@@ -77,6 +95,6 @@ export default {
         console.log(e);
         throw e;
       }
-    }
-  }
+    },
+  },
 };

@@ -75,3 +75,17 @@ button {
     transform: rotate(1turn);
   }
 }
+
+@keyframes swing {
+  0% {
+    background-position-x: -180px;
+  }
+
+  50% {
+    background-position-x: 0px;
+  }
+
+  100% {
+    background-position: -180px;
+  }
+}
