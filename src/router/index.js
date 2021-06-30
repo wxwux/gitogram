@@ -3,7 +3,6 @@ import {
   feeds, user, auth, stories, repos, following
 } from "../views";
 import * as api from "../api";
-import store from "../store";
 
 const routes = [
   {

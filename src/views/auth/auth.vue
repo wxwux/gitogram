@@ -21,6 +21,7 @@ import { mapActions } from "vuex";
 import { logo } from "../../components/logo";
 import { button } from "../../components/button";
 import { icon } from "../../icons";
+import env from "../../../env";
 
 export default {
   components: {
@@ -40,7 +41,7 @@ export default {
       const token = await this.authUserByCode(code);
       localStorage.setItem("token", token);
       this.$router.replace({ name: "feeds", query: { search: "" } });
-      window.location = "/";
+      window.location = env.redirect_url;
     }
   },
 };
