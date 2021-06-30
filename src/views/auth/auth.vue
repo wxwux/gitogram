@@ -18,7 +18,6 @@
 
 <script>
 import { mapActions } from "vuex";
-import axios from "axios";
 import { logo } from "../../components/logo";
 import { button } from "../../components/button";
 import { icon } from "../../icons";
