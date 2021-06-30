@@ -2,7 +2,7 @@ import { makeRequest } from "../requests";
 import { clientId, clientSecret } from "../../../credentials.json";
 
 export const getAccessTokenByPersonalCode = (code) => makeRequest({
-  url: "http://localhost:8000/github",
+  url: "https://webdev-api.loftschool.com/github",
   method: "post",
   data: {
     code
