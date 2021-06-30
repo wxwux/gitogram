@@ -14,6 +14,6 @@ export default {
       // console.log("data", data);
       return data.token;
       // return new URLSearchParams(data).get("access_token");
-    }
+    },
   }
 };

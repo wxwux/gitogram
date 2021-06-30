@@ -10,6 +10,11 @@ export default {
       state.data = payload;
     }
   },
+  getters: {
+    hasUser(state) {
+      return Boolean(Object.keys(state.data).length);
+    }
+  },
   actions: {
     async getUser({ commit }) {
       try {

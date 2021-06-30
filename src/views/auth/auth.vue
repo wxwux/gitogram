@@ -39,7 +39,7 @@ export default {
     if (code) {
       const token = await this.authUserByCode(code);
       localStorage.setItem("token", token);
-      // this.$router.replace({ to: "feeds" });
+      this.$router.replace({ name: "feeds", query: { search: "" } });
       window.location = "/";
     }
   },
