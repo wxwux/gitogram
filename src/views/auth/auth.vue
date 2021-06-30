@@ -5,16 +5,10 @@
         <logo />
       </div>
       <div class="enter">
-        <x-button
-          theme="green"
-          size="big"
-          @click="getToken"
-        >
+        <x-button theme="green" size="big" @click="redirectToGhAuth">
           <span class="button-content">
-            <span class="button-text">
-              Войти с помощью GitHub
-            </span>
-            <icon name="github"/>
+            <span class="button-text"> Войти с помощью GitHub </span>
+            <icon name="github" />
           </span>
         </x-button>
       </div>
@@ -24,6 +18,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import axios from "axios";
 import { logo } from "../../components/logo";
 import { button } from "../../components/button";
 import { icon } from "../../icons";
@@ -32,26 +27,24 @@ export default {
   components: {
     logo,
     xButton: button,
-    icon
+    icon,
   },
   methods: {
     ...mapActions({
-      getToken: "auth/getAuthCode",
-      getAccessToken: "auth/authUserByCode"
-    })
+      redirectToGhAuth: "auth/getAuthCode",
+      authUserByCode: "auth/authUserByCode",
+    }),
   },
   async mounted() {
     const code = new URLSearchParams(window.location.search).get("code");
-
     if (code) {
-      const token = await this.getAccessToken(code);
+      const token = await this.authUserByCode(code);
       localStorage.setItem("token", token);
-      this.$router.replace({ to: "feeds" });
+      // this.$router.replace({ to: "feeds" });
       window.location = "/";
     }
-  }
+  },
 };
-
 </script>
 
 <style lang="scss" src="./auth.scss" scoped></style>

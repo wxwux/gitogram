@@ -3,7 +3,7 @@ import * as api from "../../api";
 export default {
   namespaced: true,
   state: {
-    data: []
+    data: [],
   },
   mutations: {
     SET_REPOS: (state, payload) => {
@@ -19,6 +19,6 @@ export default {
         console.log(e);
         throw e;
       }
-    }
-  }
+    },
+  },
 };

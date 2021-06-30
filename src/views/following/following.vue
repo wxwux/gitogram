@@ -1,40 +1,54 @@
 <template>
   <div class="c-following">
-    <div class="header">
-      <page-header
-        :title="pageTitle"
-        :qty="subscriptions.length"
-      />
+    <div class="loader" v-if="loading">
+      <spinner />
     </div>
-    <ul class="subscriptions">
-      <li
-        v-for="subscription in subscriptions"
-        :key="subscription.id"
-        class="subscription-item"
-      >
-        <subscription
-          :username="subscription.full_name"
-          :avatar="subscription.owner.avatar_url"
-          :following="subscription.following"
-          :type="subscription.owner.type"
-          @button-pressed="changeSubscription(subscription.id)"
+    <div class="error" v-else-if="error">{{error}}</div>
+    <template v-else>
+      <div class="header">
+        <page-header
+          :title="pageTitle"
+          :qty="subscriptions.length"
         />
-      </li>
-    </ul>
+      </div>
+      <ul class="subscriptions">
+        <li
+          v-for="subscription in subscriptions"
+          :key="subscription.id"
+          class="subscription-item"
+        >
+          <subscription
+            :username="subscription.full_name"
+            :avatar="subscription.owner.avatar_url"
+            :following="subscription.following"
+            :type="subscription.owner.type"
+            @button-pressed="changeSubscription(subscription.id)"
+          />
+        </li>
+      </ul>
+    </template>
   </div>
 </template>
 <script>
 import { mapState, mapActions, mapGetters } from "vuex";
 import { subscription } from "../../components/subscription";
 import { pageHeader } from "../../components/pageHeader";
+import { spinner } from "../../components/spinner";
 
 export default {
   components: {
     subscription,
-    pageHeader
+    pageHeader,
+    spinner
   },
   props: {
     pageTitle: String
+  },
+  data() {
+    return {
+      loading: false,
+      error: null
+    };
   },
   computed: {
     ...mapState({
@@ -60,8 +74,15 @@ export default {
       }
     }
   },
-  created() {
-    this.fetchSubscription();
+  async created() {
+    this.loading = true;
+    try {
+      await this.fetchSubscription();
+    } catch (e) {
+      this.error = e.message;
+    } finally {
+      this.loading = false;
+    }
   }
 };
 </script>
