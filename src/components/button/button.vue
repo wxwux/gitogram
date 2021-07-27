@@ -25,7 +25,7 @@ export default {
     },
     theme: {
       type: String,
-      default: "white"
+      default: "green"
     },
     hoverText: {
       type: String

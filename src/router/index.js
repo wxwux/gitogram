@@ -46,15 +46,15 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach(async (to, from, next) => {
-  const authRoute = to.name === "auth";
-
-  try {
-    await api.user.getUserData();
-    next(authRoute ? { name: "feeds" } : null);
-  } catch (e) {
-    next(authRoute ? null : { name: "auth" });
-  }
-});
-
+// router.beforeEach(async (to, from, next) => {
+//   const authRoute = to.name === "auth";
+//
+//   try {
+//     await api.user.getUserData();
+//     next(authRoute ? { name: "feeds" } : null);
+//   } catch (e) {
+//     next(authRoute ? null : { name: "auth" });
+//   }
+// });
+//
 export default router;
