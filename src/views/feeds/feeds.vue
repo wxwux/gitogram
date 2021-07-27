@@ -10,7 +10,6 @@
             <story-user-item
               :src="owner.avatar_url"
               :username="name"
-              @storyPress="$router.push({ name: 'stories', params: { initialSlideId: id } })"
             />
           </li>
         </ul>
