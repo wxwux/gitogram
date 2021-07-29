@@ -20,7 +20,8 @@ module.exports = {
     'comma-dangle': "off",
     'no-unused-vars': "off",
     'max-len': "off",
-    'no-param-reassign' : "off"
+    'no-param-reassign' : "off",
+		'no-tabs': "off"
   },
   overrides: [
     {

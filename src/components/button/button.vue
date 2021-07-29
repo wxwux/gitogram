@@ -21,7 +21,7 @@ export default {
   props: {
     size: {
       type: String,
-      default: sizes.small
+      default: "big"
     },
     theme: {
       type: String,

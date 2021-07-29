@@ -6,10 +6,15 @@
       </template>
       <template #content>
         <ul class="stories">
-          <li class="stories-item" v-for="{ id, owner, name } in trendings" :key="id">
+          <li
+            class="stories-item"
+            v-for="{ id, owner, name } in trendings"
+            :key="id"
+          >
             <story-user-item
               :src="owner.avatar_url"
               :username="name"
+              @storyPress="$router.push({name: 'stories', params: {initialSlide: id}})"
             />
           </li>
         </ul>
