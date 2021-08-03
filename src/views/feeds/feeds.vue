@@ -8,7 +8,7 @@
         <ul class="stories">
           <li
             class="stories-item"
-            v-for="{ id, owner, name } in trendings"
+            v-for="{ id, owner, name } in getUnstarredOnly"
             :key="id"
           >
             <story-user-item
@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState, mapGetters } from "vuex";
 
 import { header } from "../../components/header";
 import { topLine } from "../../components/topLine";
@@ -84,6 +84,7 @@ export default {
       trendings: (state) => state.trendings.data,
       starred: (state) => state.starred.data,
     }),
+    ...mapGetters(["getUnstarredOnly"])
   },
   methods: {
     ...mapActions({

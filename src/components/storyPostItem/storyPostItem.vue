@@ -3,7 +3,7 @@
     <div class="stories-container">
       <div class="header">
         <div class="progress">
-          <x-progress :active="active" @onFinish="$emit('onProgressFinish')" />
+          <x-progress @onFinish="$emit('onProgressFinish')" />
         </div>
         <div class="user">
           <user :username="data.username" :src="data.userAvatar" />
@@ -14,16 +14,16 @@
           <spinner />
         </div>
         <div class="info" v-else>
-          <div
-            v-if="data.content?.length"
-            class="content-text"
-            v-html="data.content"
-          ></div>
+          <div v-if="data.content?.length" class="content-text" v-html="data.content"></div>
           <placeholder v-else :paragraphs="2" />
         </div>
       </div>
       <div class="button">
-        <x-button>Follow</x-button>
+        <x-button
+          :loading="data.following.loading"
+          @click="$emit('onFollowTheRepo',  data.id)"
+          >{{data.following.status ? "Unfollow": "Follow"}}</x-button
+        >
       </div>
       <template v-if="active">
         <button
@@ -67,7 +67,7 @@ export default {
     placeholder,
     spinner,
   },
-  emits: ["onPrevSlide", "onNextSlide", "onProgressFinish"],
+  emits: ["onPrevSlide", "onNextSlide", "onProgressFinish", "onFollowTheRepo"],
   props: {
     active: Boolean,
     loading: Boolean,

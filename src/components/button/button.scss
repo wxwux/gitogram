@@ -1,5 +1,8 @@
 .c-button {
   border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
   &.rubberish {
     width: 100%;
@@ -10,51 +13,50 @@
     text-align: center;
   }
 
-  &.size-small {
-    padding: 6px 28px;
-    font-size: 12px;
-  }
-
   &.size-big {
     padding: 10px 50px;
     font-weight: bold;
     font-size: 16px;
-    background: #f0f0f0;
   }
 
-  &.theme-white {
+  &.theme-green {
     border: 1px solid rgba(60, 60, 67, 0.18);
-    //background: transparent;
+    background: var(--green);
+    color: #fff;
 
     &:hover {
-      background: #31AE54;
+      background: #9E9E9E;
       color: #fff;
     }
   }
 
-  &.theme-green {
-    background: #31AE54;
-    color: white;
+  &.loading {
+    background: #9E9E9E;
+    pointer-events: none;
+    color: #fff;
+
 
     &:hover {
-      background: #A8A8A8;
+      background: #9E9E9E;
     }
+
   }
 
-  &.hover-text {
+  &.disabled {
+    background: #9E9E9E;
+    pointer-events: none;
+    color: #fff;
+
+
     &:hover {
-      .btn-text {
-        font-size: 0;
-      }
-
-      &:after {
-        font-size: inherit;
-      }
+      background: #9E9E9E;
     }
 
-    &:after {
-      content: attr(data-hover-text);
-      font-size: 0;
-    }
   }
+}
+
+.preloader {
+  color: #fff;
+  width: 18px;
+  display: block;
 }

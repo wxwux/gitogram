@@ -1,31 +1,33 @@
 <template>
   <button
-    :class="[
-      'c-button', `theme-${theme}`,
-      {[`size-${size}`]: size.length && rubberish === false},
-      {'hover-text': withHoverText}, {rubberish: rubberish}
-    ]"
-    :data-hover-text="hoverText"
+    class="c-button size-big theme-green"
+    :class="[ {loading}, {disabled} ]"
   >
-    <span class="btn-text">
+    <span class="preloader" v-if="loading">
+      <spinner />
+    </span>
+    <span class="btn-text" v-else>
       <slot></slot>
     </span>
   </button>
 </template>
 
 <script>
-import { sizes, themes } from "./enums";
+import { spinner } from "../spinner";
 
 export default {
   name: "Button",
+  components: { spinner },
   props: {
     size: {
       type: String,
       default: "big"
     },
-    theme: {
-      type: String,
-      default: "green"
+    loading: {
+      type: Boolean
+    },
+    disabled: {
+      type: Boolean
     },
     hoverText: {
       type: String
@@ -37,6 +39,10 @@ export default {
   computed: {
     withHoverText() {
       return this.hoverText?.length;
+    },
+    btnTheme() {
+      if (this.loading) return "grey";
+      return "green";
     }
   }
 };
